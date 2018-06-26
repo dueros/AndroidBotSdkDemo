@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <ImageView
+        android:id="@+id/light"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/status"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/light" />
+
+    <Button
+        android:id="@+id/bind"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/light"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="绑定服务" />
+
+
+
+    <Button
+        android:id="@+id/listen"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/bind"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="点我开始说话" />
+
+
+    <Button
+        android:id="@+id/sendClientContext"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/listen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="sendClientContext" />
+
+    <Button
+        android:id="@+id/test"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/sendClientContext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="试一试" />
+
+    <TextView
+        android:id="@+id/input"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/test"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="输入城市" />
+
+
+</RelativeLayout>
