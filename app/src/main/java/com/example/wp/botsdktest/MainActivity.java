@@ -162,16 +162,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
         public void onHandleIntent(String token, BotIdentity identity, BotIntent intent,
                                    String customData) {
             Log.d("BotSdk", "onHandleIntent:" + token + "|" + identity
-                    .accessToken + "|" + intent.name + "|" + intent.slots.get(0).name + "|" +
+                    .accessToken + "|" + intent.name + "|" + intent.slots + "|" +
                     customData);
 
-            if (intent.name.equals("open_light")) {
-                if (intent.slots.get(0).value.equals("黄灯")) {
+            if ("open_light".equals(intent.name )) {
+                if (intent.slots!=null  && intent.slots.size() > 0 && intent.slots.get(0).value.equals("黄灯")) {
                     mLight.setImageDrawable(getResources().getDrawable(R.drawable.light2));
                 } else {
                     mLight.setImageDrawable(getResources().getDrawable(R.drawable.light3));
                 }
-            } else if (intent.name.equals("close_lght")) {
+            } else if ("close_light".equals(intent.name)) {
                 mLight.setImageDrawable(getResources().getDrawable(R.drawable.light));
             }
 
