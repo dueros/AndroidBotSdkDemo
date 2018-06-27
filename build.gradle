@@ -21,6 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven{ url 'http://st01-rdqa-dev093-niuyu.epc.baidu.com:8081/artifactory/repo-bot-sdk/'}
     }
 }
 
