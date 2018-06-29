@@ -165,13 +165,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     .accessToken + "|" + intent.name + "|" + intent.slots + "|" +
                     customData);
 
-            if ("open_light".equals(intent.name )) {
+            if ("light_on".equals(intent.name )) {
                 if (intent.slots!=null  && intent.slots.size() > 0 && intent.slots.get(0).value.equals("黄灯")) {
                     mLight.setImageDrawable(getResources().getDrawable(R.drawable.light2));
                 } else {
                     mLight.setImageDrawable(getResources().getDrawable(R.drawable.light3));
                 }
-            } else if ("close_light".equals(intent.name)) {
+            } else if ("light_off".equals(intent.name)) {
                 mLight.setImageDrawable(getResources().getDrawable(R.drawable.light));
             }
 
