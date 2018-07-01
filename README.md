@@ -205,7 +205,8 @@ new IBotMessageListener() {
         <col style="width: 129px;" />
         <col style="width: 77px;" />
         <col style="width: 294px;" />
-        <col style="width: 264px;" /></colgroup>
+        <col style="width: 264px;" />
+    </colgroup>
     <tbody>
         <tr>
             <td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 130px; padding: 8px;">
@@ -473,9 +474,9 @@ new IBotMessageListener() {
                 <div>request params</div>
                 <div>{</div>
                 <div>index:1</div>
-                <div>}</div></td>
+                <div>}</div>
+            </td>
         </tr>
-
         <tr>
             <td>read_message</td>
             <td>
