@@ -19,6 +19,18 @@
 * 在适当的时候发起语音请求
 
 
+## DBP平台上的前期准备
+
+* 申请成为DuerOS开发者
+  * [https://dueros.baidu.com/dbp/](https://dueros.baidu.com/dbp/) 
+* 由于Android App Bot还没有正式对外发布，需要先到以下地址激活在DBP上开发Android App Bot的功能
+  * [https://dueros.baidu.com/dbp/bot/index#/authorization](https://dueros.baidu.com/dbp/bot/index#/authorization)
+  * 激活码``AndroidAPP``
+* 在DBP上创建技能，类型是Android App
+  * packageName
+  * key
+  * [调用名称]
+
 
 ## 流程图
 
