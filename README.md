@@ -536,3 +536,14 @@ new IBotMessageListener() {
     </tbody>
 </table>
 
+## 真机调试过程
+
+完成开发的app，可以在手机上完成测试
+
+* 在手机上安装[bot-master-apk.apk](bot-master-apk.apk)
+* 在手机上安装开发完成的android app
+* 在Dbp上打开真机调试
+![真机调试](doc/screen_shot1.png)
+* 在手机上启动bot-master-apk.apk的程序，程序名字叫做“DcsSampleApp”
+* “打开技能调试模式”，听完设置成功的tts不要打断
+* “打开【调用名称】”，android app会被启动
