@@ -58,6 +58,13 @@
 
 ## API
 
+### BotSdk的初始化
+
+建议在application启动的时候完成BotSdk的初始化
+```
+BotSdk.getInstance().init(application);
+```
+
 
 ### 注册过程
 
@@ -547,3 +554,15 @@ new IBotMessageListener() {
 * 在手机上启动bot-master-apk.apk的程序，程序名字叫做“DcsSampleApp”
 * “打开技能调试模式”，听完设置成功的tts不要打断
 * “打开【调用名称】”，android app会被启动
+
+
+## 新的安卓项目集成
+
+请下载aar包, 并且放到项目的app/libs中
+  * [app/libs/botsdk-1.0.0.12.aar](app/libs/botsdk-1.0.0.12.aar)
+
+在app/build.gradle加入依赖
+```
+implementation(name:'botsdk-1.0.0.12',ext:'aar')
+```
+然后参考以上代码示例进行集成
