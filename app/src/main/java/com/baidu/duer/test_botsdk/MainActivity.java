@@ -1,11 +1,11 @@
-package com.example.wp.botsdktest;
+package com.baidu.duer.test_botsdk;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.os.Bundle;
 
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,10 +17,12 @@ import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.botsdk.IBotMessageListener;
 import com.baidu.duer.botsdk.UiContextPayload;
+import com.baidu.duer.test_botsdk.R;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -34,6 +36,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BotSdk.getInstance().init(this.getApplication());
+        BotSdk.enableLog(true);
 
         setContentView(R.layout.activity_main);
 
@@ -43,11 +46,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.test).setOnClickListener(this);
         findViewById(R.id.listen).setOnClickListener(this);
         findViewById(R.id.sendClientContext).setOnClickListener(this);
+        findViewById(R.id.exit).setOnClickListener(this);
     }
 
 
     public String sign(String rand){
-        String key = "abcdefghijk12345";
+        String key = "fwjioefjwef121iowe";
         return getMD5(rand+key);
     }
 
@@ -87,11 +91,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.exit:
+                finish();
+                break;
             case R.id.bind:
                 if (!BotSdk.getInstance().isRegister()) {
                     String rand1="hongyang"+Math.random();
                     String rand2= "yanghong"+Math.random();
-                    String botId="3fcc17e3-7e97-b9ec-84cd-5211f6271394";
+                    String botId="756a51a0-f74a-e324-66f1-5b49a48932cb";
                     BotSdk.getInstance().register(messageListener,
                             botId,
 //                            "f5b129dc-94ac-92b0-3d79-5469d1facf7f",
@@ -102,6 +109,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 } else {
                     mStatusView.setText("注册成功，可以开始语音交互");
                 }
+                ContentResolver contentResolver = getContentResolver();
+                Uri uri = Uri.parse("content://com.baidu.baiduaccount.provider.userinfoprovider/userid");
+                android.database.Cursor cursor= contentResolver.query(uri, null, null, null);
+                Log.d(TAG, "cursor is:" + cursor.getCount() + " cursor is:" + cursor);
+                if (cursor.moveToFirst()) {
+                    Log.d(TAG, "user id is: " + cursor.getString(0));
+                }
+
                 break;
             case R.id.test:
                 BotSdk.getInstance().speak("你点击了试一试按钮", false);
@@ -138,7 +153,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void updateUiContext() {
         UiContextPayload payload = new UiContextPayload();
-        //String[] words = {"试一试", "点击试一试"};
+        String[] words = {"试一试", "点击试一试"};
         HashMap<String, String> params;
         params = new HashMap<>();
         params.put("name", "地址");
@@ -148,11 +163,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 "input",
                 params);
 
-        params = new HashMap<>();
-        params.put("name", "试一试");
         payload.addHyperUtterance("sdkdemo://clicktest",
-                null, "link",
-                params);
+                Arrays.asList(words), "link",
+                null);
+
+
+        for (int i = 0 ; i < 3; i++) {
+            params = new HashMap<>();
+            params.put("index", String.valueOf(i));
+            payload.addHyperUtterance("sdkdemo://selecttest/index=" + i, null, "select", params);
+        }
 
         BotSdk.getInstance().updateUiContext(payload);
     }
@@ -230,7 +250,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         @Override
         public void onCloseRequested() {
             Log.d(TAG, "onCloseRequested: ");
-            // System.exit(0);
+            System.exit(0);
         }
 
         @Override

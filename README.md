@@ -557,12 +557,13 @@ new IBotMessageListener() {
 
 
 ## 新的安卓项目集成
-
-请下载aar包, 并且放到项目的app/libs中
-  * [app/libs/botsdk-1.0.0.12.aar](app/libs/botsdk-1.0.0.12.aar)
+在项目build.gradle中新增 maven库依赖
+```gradle
+maven{ url 'https://dueros.baidu.com/maven/repository/maven-releases/'}
+```
 
 在app/build.gradle加入依赖
-```
-implementation(name:'botsdk-1.0.0.12',ext:'aar')
+```gradle
+implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.1.0.3@aar'
 ```
 然后参考以上代码示例进行集成
