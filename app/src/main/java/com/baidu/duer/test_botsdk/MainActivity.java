@@ -112,14 +112,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 } else {
                     mStatusView.setText("注册成功，可以开始语音交互");
                 }
-                ContentResolver contentResolver = getContentResolver();
-                Uri uri = Uri.parse("content://com.baidu.baiduaccount.provider.userinfoprovider/userid");
-                android.database.Cursor cursor= contentResolver.query(uri, null, null, null);
-                Log.d(TAG, "cursor is:" + cursor.getCount() + " cursor is:" + cursor);
-                if (cursor.moveToFirst()) {
-                    Log.d(TAG, "user id is: " + cursor.getString(0));
-                }
-
                 break;
             case R.id.test:
                 BotSdk.getInstance().speak("你点击了试一试按钮", false);
