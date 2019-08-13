@@ -564,6 +564,6 @@ maven{ url 'https://dueros.baidu.com/maven/repository/maven-releases/'}
 
 在app/build.gradle加入依赖
 ```gradle
-implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.1.0.3@aar'
+implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.28.7@aar'
 ```
 然后参考以上代码示例进行集成

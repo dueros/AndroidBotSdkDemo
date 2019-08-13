@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.duer.bot.directive.payload.AmountInfo;
 import com.baidu.duer.botsdk.BotIdentity;
 import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.BotSdk;
+import com.baidu.duer.botsdk.IAccountChargeMsgListener;
 import com.baidu.duer.botsdk.IBotMessageListener;
 import com.baidu.duer.botsdk.UiContextPayload;
 import com.baidu.duer.test_botsdk.R;
@@ -37,6 +39,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         BotSdk.getInstance().init(this.getApplication());
         BotSdk.enableLog(true);
+        BotSdk.getInstance().setAccountAndChargeListener(accountChargeMsgListener);
 
         setContentView(R.layout.activity_main);
 
@@ -176,6 +179,42 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         BotSdk.getInstance().updateUiContext(payload);
     }
+
+    /**
+     * 这个Listener用于处理用户账号绑定和支付相关信息，对于没有账户和支付需求的APP,可以忽略这个定义
+     * 协议地址：http://icode.baidu.com/repos/baidu/duer/open-platform-api-doc/blob/master:dueros-conversational-service/device-interface/bot-app-sdk-private.md?from=search
+     */
+
+    IAccountChargeMsgListener accountChargeMsgListener = new IAccountChargeMsgListener() {
+
+        /**
+         * 授权结束要跳转搭Url地址
+         * @param url url
+         * @param accessToken 第三方平台的授权accessToken
+         */
+        @Override
+        public void onLinkAccountSucceed(String url, String accessToken) {
+            Log.d(TAG, "授权成功，跳转到url:" + url + " accesstoken:" + accessToken);
+        }
+
+        /**
+         * 支付状态改变的通知
+         * @param purchaseResult 支付结果 SUCCESS 支付成功 - ERROR 支付发生错误
+         * @param authorizationAmount 应收金额信息
+         * @param capturedAmount 实际扣款信息
+         * @param creationTimestamp 订单创建时间戳
+         * @param baiduOrderReferenceId 此次交易百度生成的订单Id
+         * @param sellerOrderId 对应支付的订单ID
+         * @param msg 订单信息
+         */
+        @Override
+        public void onChargeStatusUpdated(String purchaseResult, AmountInfo authorizationAmount,
+                                   AmountInfo capturedAmount, long creationTimestamp,
+                                   String baiduOrderReferenceId, String sellerOrderId, String msg) {
+            Log.d(TAG, "支付结果通知：" + purchaseResult);
+
+        }
+    };
 
     private IBotMessageListener messageListener = new IBotMessageListener() {
         @Override
