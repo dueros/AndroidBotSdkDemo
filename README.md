@@ -23,13 +23,8 @@
 
 * 申请成为DuerOS开发者
   * [https://dueros.baidu.com/dbp/](https://dueros.baidu.com/dbp/) 
-* 由于Android App Bot还没有正式对外发布，需要先到以下地址激活在DBP上开发Android App Bot的功能
-  * [https://dueros.baidu.com/dbp/bot/index#/authorization](https://dueros.baidu.com/dbp/bot/index#/authorization)
-  * 激活码``AndroidAPP``
-* 在DBP上创建技能，类型是Android App
-  * packageName
-  * key
-  * [调用名称]
+* 在DBP上创建技能，类型是自定义,可以参考文档[DBP使用指南](https://github.com/dueros/AndroidBotSdkDemo/blob/master/doc/%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3/DBP%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.pdf)
+* 由于Android App Bot还没有正式对外发布,技能创建完成后参考文档将技能信息发送给百度侧接口人开通Android APP功能
 
 
 ## 流程图
@@ -544,16 +539,7 @@ new IBotMessageListener() {
 </table>
 
 ## 真机调试过程
-
-完成开发的app，可以在手机上完成测试
-
-* 在手机上安装[bot-master-apk.apk](bot-master-apk.apk)
-* 在手机上安装开发完成的android app
-* 在Dbp上打开真机调试
-![真机调试](doc/screen_shot1.png)
-* 在手机上启动bot-master-apk.apk的程序，程序名字叫做“DcsSampleApp”
-* “打开技能调试模式”，听完设置成功的tts不要打断
-* “打开【调用名称】”，android app会被启动
+使用小度在家1S设备【型号NV6001】,安装上自己的测试app，query打开调试技能模式就可以开始真机测试了。
 
 
 ## 新的安卓项目集成
