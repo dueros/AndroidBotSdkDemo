@@ -23,8 +23,7 @@
 
 * 申请成为DuerOS开发者
   * [https://dueros.baidu.com/dbp/](https://dueros.baidu.com/dbp/) 
-* 在DBP上创建技能，类型是自定义,可以参考文档[DBP使用指南](https://github.com/dueros/AndroidBotSdkDemo/blob/master/doc/%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3/DBP%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.pdf)
-* 由于Android App Bot还没有正式对外发布,技能创建完成后参考文档将技能信息发送给百度侧接口人开通Android APP功能
+* 在[DBP控制台](https://dueros.baidu.com/dbp/main/console)选择“创建新技能”，类型是自定义-Android APP,可以参考文档[DBP使用指南](https://github.com/dueros/AndroidBotSdkDemo/blob/master/doc/%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3/DBP%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.pdf)
 
 
 ## 流程图
