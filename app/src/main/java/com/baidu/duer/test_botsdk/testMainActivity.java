@@ -1,7 +1,5 @@
 package com.baidu.duer.test_botsdk;
 
-import android.content.ContentResolver;
-import android.net.Uri;
 import android.os.Bundle;
 
 
@@ -19,16 +17,17 @@ import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.botsdk.IAccountChargeMsgListener;
 import com.baidu.duer.botsdk.IBotMessageListener;
 import com.baidu.duer.botsdk.UiContextPayload;
-import com.baidu.duer.test_botsdk.R;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+/**
+ * @Deprecated 此类已经废弃
+ */
+public class testMainActivity extends Activity implements View.OnClickListener {
     public static final String TAG = "BotSdk";
 
     private TextView mStatusView;
@@ -43,13 +42,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.activity_main);
 
-        mStatusView = findViewById(R.id.status);
-        mLight = findViewById(R.id.light);
-        findViewById(R.id.bind).setOnClickListener(this);
-        findViewById(R.id.test).setOnClickListener(this);
-        findViewById(R.id.listen).setOnClickListener(this);
-        findViewById(R.id.sendClientContext).setOnClickListener(this);
-        findViewById(R.id.exit).setOnClickListener(this);
     }
 
 
@@ -94,43 +86,42 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.exit:
-                finish();
-                break;
-            case R.id.bind:
-                if (!BotSdk.getInstance().isRegister()) {
-                    String rand1="hongyang"+Math.random();
-                    String rand2= "yanghong"+Math.random();
-                    String botId="756a51a0-f74a-e324-66f1-5b49a48932cb";
-                    BotSdk.getInstance().register(messageListener,
-                            botId,
-//                            "f5b129dc-94ac-92b0-3d79-5469d1facf7f",
-                            rand1,
-                            sign(rand1),
-                            rand2,
-                            sign(rand2));
-                } else {
-                    mStatusView.setText("注册成功，可以开始语音交互");
-                }
-                break;
-            case R.id.test:
-                BotSdk.getInstance().speak("你点击了试一试按钮", false);
-                break;
-            case R.id.listen:
-                BotSdk.getInstance().listen();
-                break;
-            case R.id.sendClientContext:
-                updateUiContext();
-                break;
-            default:
-                break;
+       //     case R.id.exit:
+       //         finish();
+       //         break;
+       //     case R.id.bind:
+       //         if (!BotSdk.getInstance().isRegister()) {
+       //             String rand1="hongyang"+Math.random();
+       //             String rand2= "yanghong"+Math.random();
+       //             String botId="756a51a0-f74a-e324-66f1-5b49a48932cb";
+       //             BotSdk.getInstance().register(messageListener,
+       //                     botId,
+//     //                       "f5b129dc-94ac-92b0-3d79-5469d1facf7f",
+       //                     rand1,
+       //                     sign(rand1),
+       //                     rand2,
+       //                     sign(rand2));
+       //         } else {
+       //             mStatusView.setText("注册成功，可以开始语音交互");
+       //         }
+       //         break;
+       //     case R.id.test:
+       //         BotSdk.getInstance().speak("你点击了试一试按钮", false);
+       //         break;
+       //     case R.id.listen:
+       //         BotSdk.getInstance().listen();
+       //         break;
+       //     case R.id.sendClientContext:
+       //         updateUiContext();
+       //         break;
+       //     default:
+       //         break;
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        findViewById(R.id.bind).performClick();
         mLight.setImageDrawable(mLight.getDrawable());
     }
 
@@ -232,14 +223,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         public void onClickLink(String url, HashMap<String, String> paramMap) {
             Log.d(TAG, "onClickLink: " + url + " , " + paramMap);
             if("sdkdemo://clicktest".equals(url)){
-                findViewById(R.id.test).performClick();
+                // findViewById(R.id.test).performClick();
             }
 
             if("sdkdemo://input".equals(url)){
-                ((TextView)findViewById(R.id.input)).setText(paramMap.get("content"));
+                /// ((TextView)findViewById(R.id.input)).setText(paramMap.get("content"));
             }
 
-            Toast.makeText(MainActivity.this, "url = " + url, Toast.LENGTH_SHORT).show();
+            Toast.makeText(testMainActivity.this, "url = " + url, Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -275,7 +266,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 default:
                     break;
             }
-            Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(testMainActivity.this, msg, Toast.LENGTH_SHORT).show();
         }
 
         @Override
