@@ -8,9 +8,11 @@ import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
 import com.baidu.duer.test_botsdk.botsdk.BotSDKUtils;
 import com.baidu.duer.test_botsdk.utils.BotConstants;
+import com.baidu.duer.test_botsdk.utils.ContextUtil;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 
 /**
@@ -24,6 +26,7 @@ public class BotsdkApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        ContextUtil.setContext(this);
         // 初始化BotSDK
         BotSdk.getInstance().init(this);
         // 打开BotSDK的Log开关，开发阶段建议打开Log开关，便于排查问题

@@ -18,9 +18,48 @@
         <Button android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/charge_test"
-                android:text="支付测试"
+                android:text="开始支付"
                 android:textSize="22dp"
         />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:layout_marginTop="22dp"
+                android:text="UIControl测试!"/>
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/click_test"
+                android:text="试一试"
+                android:textSize="22dp"
+        />
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="22dp"
+        >
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/first_num_test"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="第一个"
+            />
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/second_num_test"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="第二个"
+            />
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/third_num_test"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="第三个"
+            />
+        </LinearLayout>
     </LinearLayout>
 
 

@@ -6,10 +6,15 @@ import java.util.List;
 
 import com.baidu.duer.botsdk.BotIdentity;
 import com.baidu.duer.botsdk.BotIntent;
+import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.botsdk.IBotMessageListener;
 import com.baidu.duer.test_botsdk.application.BotsdkApplication;
+import com.baidu.duer.test_botsdk.utils.BotConstants;
+import com.baidu.duer.test_botsdk.utils.ContextUtil;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 
 /**
  * 接入方需要实现的callBack,接受BotSDK下发的意图和事件
@@ -121,6 +126,7 @@ public class BotMessageListener implements IBotMessageListener {
 
     @Override
     public void onRegisterSucceed() {
-
+        Intent intent = new Intent(BotConstants.ACTION_REGISTER_SUCCESS);
+        LocalBroadcastManager.getInstance(ContextUtil.getContext()).sendBroadcastSync(intent);
     }
 }
