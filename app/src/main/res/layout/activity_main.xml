@@ -1,66 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         tools:context=".activity.MainActivity">
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="vertical"
-                  android:layout_height="match_parent">
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:layout_weight="1"
+                 android:id="@+id/fragment_container">
+    </FrameLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="0.5dp"
+          android:background="@android:color/darker_gray"/>
+    <android.support.v4.app.FragmentTabHost android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/tab_container">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:text="BotSDK测试!"/>
-        <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/charge_test"
-                android:text="开始支付"
-                android:textSize="22dp"
-        />
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:layout_marginTop="22dp"
-                android:text="UIControl测试!"/>
-        <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/click_test"
-                android:text="试一试"
-                android:textSize="22dp"
-        />
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="22dp"
-        >
-            <Button android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/first_num_test"
-                    android:textSize="22dp"
-                    android:layout_marginLeft="22dp"
-                    android:text="第一个"
-            />
-            <Button android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/second_num_test"
-                    android:textSize="22dp"
-                    android:layout_marginLeft="22dp"
-                    android:text="第二个"
-            />
-            <Button android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/third_num_test"
-                    android:textSize="22dp"
-                    android:layout_marginLeft="22dp"
-                    android:text="第三个"
-            />
-        </LinearLayout>
-    </LinearLayout>
+    </android.support.v4.app.FragmentTabHost>
 
 
-</android.support.v4.widget.NestedScrollView>
+</LinearLayout>

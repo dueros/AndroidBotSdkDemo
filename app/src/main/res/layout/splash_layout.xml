@@ -8,8 +8,9 @@
         tools:context=".activity.SplashActivity">
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:textColor="@android:color/black"
               android:layout_gravity="center"
               android:textSize="40dp"
-              android:text="连接Bot服务中..."/>
+              android:text="Bot服务连接中..."/>
 
 </FrameLayout>

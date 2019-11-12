@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">botsdk-sample</string>
+    <string name="play_hint">依赖系统词典（卡通类）：对我说：“小度小度，我想看汪汪队”</string>
+    <string name="fast_forward_hint">依赖自定义词典（时间单位）:对我说：“小度小度，快进一分钟/快进三十秒”</string>
+    <string name="next_intent">引用系统选择意图：对我说：“小度小度，下一个/上一个”</string>
+    <string name="previous_intent">引用系统播放控制意图：对我说：“小度小度，暂停/继续”</string>
+    <string name="result_intent">指令返回结果:</string>
+
+    <string name="ui_control_custom">自定义交互的组件,可以对我说：“小度小度，点击登录/注册”</string>
 </resources>

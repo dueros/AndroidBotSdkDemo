@@ -35,7 +35,7 @@ public class BotsdkApplication extends Application {
         String random1 = BotConstants.RANDOM1_PREFIX + Math.random();
         String random2 = BotConstants.RANDOM2_PREFIX + Math.random();
         BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, random1,
-                BotSDKUtils.sign(random1), random2, BotSDKUtils.sign(random2));
+               BotSDKUtils.sign(random1), random2, BotSDKUtils.sign(random2));
         registerActivityLifecycleCallbacks(new ActivityContollor());
     }
 

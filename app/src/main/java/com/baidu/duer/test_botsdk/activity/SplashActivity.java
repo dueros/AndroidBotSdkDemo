@@ -25,8 +25,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Toast.makeText(SplashActivity.this, "注册成功!", Toast.LENGTH_LONG).show();
-                Intent intent1 = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent1);
+                startMainActivity();
             }
         }, intentFilter);
     }
@@ -35,5 +34,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         finish();
+    }
+
+    private void startMainActivity() {
+        Intent intent1 = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent1);
     }
 }

@@ -1,5 +1,6 @@
 package com.baidu.duer.test_botsdk.utils;
 
+
 public class BotConstants {
 
     /**
@@ -13,9 +14,21 @@ public class BotConstants {
     public static final String RANDOM2_PREFIX = "random2";
 
     // UIControl用到的路由常量
-    public static final String CLICK_TEST_URL = "sdkdemo://clicktest";
+    public static final String CLICK_LOGIN_URL = "sdkdemo://clicklogin";
+    public static final String CLICK_REGISTER_URL = "sdkdemo://clickregister";
     public static final String SELETC_TEST_URL = "sdkdemo://selecttest/";
+    public static final String INPUT_TEST_URL = "sdkdemo://inputtest/";
 
     // 连接状态广播
     public static final String ACTION_REGISTER_SUCCESS = "com.baidu.duer.test_botsdk.register_success";
+
+    // 自定义快进意图名称
+    public static final String FAST_FORWARD_INTENT = "fast_forward_intent";
+    // 系统预定义[数字] 槽位名称
+    public static final String SYS_NUMBER = "sys.number";
+    // 用户自定义词典[时间单位] 槽位名称
+    public static final String TIME_UNIT = "time.unit";
+    // 用户自定义词典值
+    public static final String TIME_UNIT_SECOND = "second";
+    public static final String TIME_UNIT_MINUTE = "minute";
 }
