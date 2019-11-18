@@ -24,11 +24,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 /**
- * 意图处理Demo页面，包括如下demo
- * 1，处理自定义意图
- *    （1）引用自定义词典，解析槽位数据
- *    （2）引用系统预定义词典，解析槽位信息
- * 2，处理系统预定义意图（确认，取消等）
+ * 自定义交互组件Demo页面，包括如下demo
+ * 1，处理自定义交互组件
+ * 2，处理系统预定义交互组件，比如选择第几个，输入XX等
  */
 public class UiControlFragment extends Fragment implements IBotIntentCallback, View.OnClickListener {
 

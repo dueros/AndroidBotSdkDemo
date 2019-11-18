@@ -21,6 +21,8 @@ public class BotConstants {
 
     // 连接状态广播
     public static final String ACTION_REGISTER_SUCCESS = "com.baidu.duer.test_botsdk.register_success";
+    // 连接状态广播
+    public static final String MAIN_ACTIVITY_LAUNCH_SUCCESS = "com.baidu.duer.test_botsdk.main_launch_success";
 
     // 自定义快进意图名称
     public static final String FAST_FORWARD_INTENT = "fast_forward_intent";

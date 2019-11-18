@@ -568,3 +568,6 @@ implementation 'com.alibaba:fastjson:1.1.71.android'
 implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.32.0@aar'
 ```
 然后参考以上代码示例进行集成
+
+## 导入demo dbp技能
+为便于开发这尽快在本地跑通流程，在[DBP](https://dueros.baidu.com/dbp/main/console)创建技能可以直接选则导入技能分享链接，填入：“https://dueros.baidu.com/dbp/main/console?shareCode=FXXs” 可以快速导入demo app对应的BDP技能。

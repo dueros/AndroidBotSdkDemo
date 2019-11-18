@@ -1,21 +1,19 @@
 package com.baidu.duer.test_botsdk.activity;
 
-import java.util.HashMap;
-
 import com.baidu.duer.bot.directive.payload.AmountInfo;
-import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.IAccountChargeMsgListener;
 import com.baidu.duer.test_botsdk.R;
-import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
-import com.baidu.duer.test_botsdk.botsdk.IBotIntentCallback;
-import com.baidu.duer.test_botsdk.fragment.BlankFragment;
+import com.baidu.duer.test_botsdk.fragment.GetDeviceInfoFragment;
 import com.baidu.duer.test_botsdk.fragment.HandleIntentFragment;
+import com.baidu.duer.test_botsdk.fragment.PaymentAndAccountFragment;
 import com.baidu.duer.test_botsdk.fragment.UiControlFragment;
+import com.baidu.duer.test_botsdk.utils.BotConstants;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -33,9 +31,9 @@ public class MainActivity extends AppCompatActivity implements IAccountChargeMsg
 
     private static final String TAG = "testMainActivity";
 
-    private String[] tabs = new String[]{"意图处理", "自定义交互", "支付和手机号", "宿主信息"};
+    private String[] tabs = new String[]{"意图处理", "自定义交互", "支付和手机号", "设备和用户信息"};
     private Class[] mFragmentClasses = new Class[]{HandleIntentFragment.class, UiControlFragment.class,
-            BlankFragment.class, BlankFragment.class};
+            PaymentAndAccountFragment.class, GetDeviceInfoFragment.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements IAccountChargeMsg
         tabHost.setCurrentTab(0);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = new Intent(BotConstants.MAIN_ACTIVITY_LAUNCH_SUCCESS);
+        LocalBroadcastManager.getInstance(this).sendBroadcastSync(intent);
+    }
 
     @Override
     protected void onDestroy() {
