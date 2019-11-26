@@ -5,6 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
         tools:context=".fragment.BlankFragment">
 
 
@@ -52,7 +53,8 @@
             android:text="@string/result_intent"
             android:textSize="@dimen/hint_text_size"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
             android:background="@android:color/holo_blue_dark"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"

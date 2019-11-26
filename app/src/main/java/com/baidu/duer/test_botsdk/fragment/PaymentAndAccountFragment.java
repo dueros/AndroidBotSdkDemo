@@ -2,6 +2,7 @@ package com.baidu.duer.test_botsdk.fragment;
 
 import java.util.HashMap;
 
+import com.baidu.duer.bot.BotMessageProtocol;
 import com.baidu.duer.bot.directive.payload.AmountInfo;
 import com.baidu.duer.bot.event.payload.LinkClickedEventPayload;
 import com.baidu.duer.botsdk.BotIntent;
@@ -65,6 +66,7 @@ public class PaymentAndAccountFragment extends Fragment implements IBotIntentCal
         Log.i(TAG, "on fragment attach");
         super.onAttach(context);
         BotMessageListener.getInstance().addCallback(this);
+        BotSdk.getInstance().setAccountAndChargeListener(this);
     }
 
     @Override
@@ -72,6 +74,7 @@ public class PaymentAndAccountFragment extends Fragment implements IBotIntentCal
         Log.i(TAG, "on fragment detach");
         super.onDetach();
         BotMessageListener.getInstance().removeCallback(this);
+        BotSdk.getInstance().setAccountAndChargeListener(null);
     }
 
     @Override
@@ -110,12 +113,26 @@ public class PaymentAndAccountFragment extends Fragment implements IBotIntentCal
 
     @Override
     public void onLinkAccountSucceed(String s, String s1) {
-
     }
 
+    /**
+     * 支付状态改变的通知
+     * @param purchaseResult 支付结果 SUCCESS 支付成功 - ERROR 支付发生错误
+     * @param authorizationAmount 应收金额信息
+     * @param capturedAmount 实际扣款信息
+     * @param creationTimestamp 订单创建时间戳
+     * @param baiduOrderReferenceId 此次交易百度生成的订单Id
+     * @param sellerOrderId 对应支付的订单ID
+     * @param msg 订单信息
+     */
     @Override
-    public void onChargeStatusUpdated(String s, AmountInfo amountInfo, AmountInfo amountInfo1, long l, String s1,
-                                      String s2, String s3) {
-
+    public void onChargeStatusUpdated(String purchaseResult, AmountInfo authorizationAmount,
+                               AmountInfo capturedAmount, long creationTimestamp,
+                               String baiduOrderReferenceId, String sellerOrderId, String msg) {
+        String intentResult = getString(R.string.result_intent) + "\n支付状态更新:%s\n订单金额信息：%s\n"
+                + "实收金额信息：%s\n订单时间戳：%d\n"
+                + "百度侧订单号：%s\n卖方生成的订单号：%s\n订单备注信息：%s";
+        mResultIntentTv.setText(String.format(intentResult, purchaseResult, authorizationAmount, capturedAmount,
+                creationTimestamp, baiduOrderReferenceId, sellerOrderId, msg));
     }
 }

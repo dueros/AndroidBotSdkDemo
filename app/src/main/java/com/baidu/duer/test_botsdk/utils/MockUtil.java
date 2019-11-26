@@ -11,7 +11,7 @@ public class MockUtil {
      */
     public static AmountInfo mockAmountInfo() {
         AmountInfo amountInfo = new AmountInfo();
-        amountInfo.amount = "0.99";
+        amountInfo.amount = "0.01";
         amountInfo.currencyCode = "CNY";
         return amountInfo;
     }
@@ -22,9 +22,9 @@ public class MockUtil {
      */
     public static SellerOrderStructure mockSellerOlrderStructure() {
         SellerOrderStructure sellerOrderStructure = new SellerOrderStructure();
-        sellerOrderStructure.productId = "111";
+        sellerOrderStructure.productId = "111" + System.currentTimeMillis();
         sellerOrderStructure.description = "测试商品介绍";
-        sellerOrderStructure.sellerOrderId = "222";
+        sellerOrderStructure.sellerOrderId = "222" + System.currentTimeMillis();
         sellerOrderStructure.productName = "测试商品名称";
         sellerOrderStructure.sellerNote = "测试商品备注";
         return sellerOrderStructure;
