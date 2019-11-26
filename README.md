@@ -549,7 +549,7 @@ new IBotMessageListener() {
 
 完成开发的app，可以在小度设备上完成测试
 
-* 在小度设备上安装开发完成的android app
+* 在<font size=8 color=red>小度设备</font>上安装开发完成的android app
 * 在Dbp上打开真机调试
 ![真机调试](doc/screen_shot1.png)
 * “打开技能调试模式”，听完设置成功的tts不要打断
