@@ -1,5 +1,5 @@
 ## Demo使用指引
-编译安装源代码到小度设备，通过语音指令"小度小度，打开单肩包",调起app。app内部有支付接口示例，UIControl示例。可以参考示例代码实现自己的功能.
+编译安装源代码到小度设备，通过语音指令"小度小度，打开单肩包",调起app。app内部有支付接口示例，UIControl示例。可以参考示例代码实现自己的功能.如果有疑问可以参考[FAQ](https://github.com/dueros/AndroidBotSdkDemo/blob/master/FAQ.md)
 
 ## 需求背景
 
@@ -26,8 +26,9 @@
 
 * 申请成为DuerOS开发者
   * [https://dueros.baidu.com/dbp/](https://dueros.baidu.com/dbp/) 
-  * [https://dueros.baidu.com/dbp/bot/index#/authorization](https://dueros.baidu.com/dbp/bot/index#/authorization)
+* AndroidApp技能类型尚未开放，需要进入到如下页面填入激活码激活AndroidApp技能开发
   * 激活码``AndroidAPP``
+  * [https://dueros.baidu.com/dbp/bot/index#/authorization](https://dueros.baidu.com/dbp/bot/index#/authorization)
 * 在DBP上创建技能，类型是Android App
   * packageName
   * key
