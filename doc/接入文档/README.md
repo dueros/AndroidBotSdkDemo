@@ -30,3 +30,5 @@
 如果有接入技能外售卖的需求，可以参考如下文档
  - [技能外售卖接入文档](https://demo.codimd.org/s/rJChB3AOH)
 
+## H5应用接入DuerOS
+H5应用接入DuerOS可以参考[H5-BotSDK](https://github.com/dueros/h5-bot-sdk)
