@@ -2,6 +2,7 @@ package com.baidu.duer.test_botsdk.fragment;
 
 import java.util.HashMap;
 
+import com.baidu.duer.bot.BotMessageProtocol;
 import com.baidu.duer.bot.event.payload.LinkClickedEventPayload;
 import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.BotSdk;
@@ -35,6 +36,8 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
     private Button mReadUserId;
     private Button mReadDeviceSerialNumber;
     private Button mReportClickLinkEvent;
+    private Button mModifyWakeUpStatus;
+    private Button mRequestBabyInfo;
 
     private static final String TAG = "HandleIntentFragment";
     public GetDeviceInfoFragment() {
@@ -69,6 +72,10 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
         mReadDeviceSerialNumber.setOnClickListener(this);
         mReportClickLinkEvent = view.findViewById(R.id.report_link_clicked_event);
         mReportClickLinkEvent.setOnClickListener(this);
+        mModifyWakeUpStatus = view.findViewById(R.id.update_modify_wakeup_state);
+        mModifyWakeUpStatus.setOnClickListener(this);
+        mRequestBabyInfo = view.findViewById(R.id.request_baby_info);
+        mRequestBabyInfo .setOnClickListener(this);
     }
 
 
@@ -111,6 +118,13 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
                         "dueros://6402fc3a-7825-3147-b52e-c25911b6d03c/entity/swan/add?recommendId=recommend_habit_operative_xiashuoyingwen&habitDetail=%7b%22repeatDays%22%3a%5b%22MON%22%2c%22TUE%22%2c%22WED%22%2c%22THU%22%2c%22FRI%22%2c%22SAT%22%2c%22SUN%22%5d%2c%22startTime%22%3a%2208%3a18%22%2c%22duration%22%3a0%2c%22enableTriggerMode%22%3atrue%2c%22triggerMode%22%3a2%2c%22enableAutoClose%22%3atrue%2c%22autoCloseOptionSelected%22%3a%7b%22text%22%3a%2290%e5%88%86%e9%92%9f%22%2c%22id%22%3a0%2c%22activated%22%3atrue%7d%7d&callback=callback__o_0__d934a2128b5944648639e4e06c3ad737cb&habitChannel=THIRD_PARTY_DUYAYA_TEST";
                 BotSdk.getInstance().uploadLinkClickedEvent(linkClickedEventPayload);
                 break;
+            case R.id.update_modify_wakeup_state:
+                BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_DISABLE_WAKEUP, null);
+                break;
+            case R.id.request_baby_info:
+                BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_REQUEST_BABY_INFO, null);
+                break;
+
         }
     }
 
