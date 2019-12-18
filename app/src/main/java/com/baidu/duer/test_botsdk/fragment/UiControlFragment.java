@@ -3,6 +3,7 @@ package com.baidu.duer.test_botsdk.fragment;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import com.baidu.duer.bot.event.payload.LinkClickedEventPayload;
 import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.botsdk.UiContextPayload;
@@ -37,6 +38,7 @@ public class UiControlFragment extends Fragment implements IBotIntentCallback, V
     private Button mSelectOne;
     private Button mSelectTwo;
     private EditText mInputText;
+    private Button mOpenCalendar;
 
     private static final String TAG = "HandleIntentFragment";
     public UiControlFragment() {
@@ -69,6 +71,8 @@ public class UiControlFragment extends Fragment implements IBotIntentCallback, V
         mSelectTwo = view.findViewById(R.id.select_two);
         mSelectTwo.setOnClickListener(this);
         mInputText = view.findViewById(R.id.input_edit_view);
+        mOpenCalendar = view.findViewById(R.id.open_calendar);
+        mOpenCalendar.setOnClickListener(this);
     }
 
 
@@ -115,6 +119,11 @@ public class UiControlFragment extends Fragment implements IBotIntentCallback, V
             }
         } else if (BotConstants.INPUT_TEST_URL.equals(url)) {
             mInputText.setText(paramMap.get("content"));
+        } else if (BotConstants.OPEN_CANLENDAR_URL.equals(url)) {
+            mOpenCalendar.performClick();
+            LinkClickedEventPayload payload = new LinkClickedEventPayload();
+            payload.url = BotConstants.OPEN_CANLENDAR_URL;
+            BotSdk.getInstance().uploadLinkClickedEvent(payload);
         }
     }
 
@@ -148,6 +157,14 @@ public class UiControlFragment extends Fragment implements IBotIntentCallback, V
         params.put("type", "city");
         payload.addHyperUtterance(BotConstants.INPUT_TEST_URL, null, "input", params);
 
+        params = new HashMap<>();
+        params.put("name", "日程表");
+        payload.addHyperUtterance(BotConstants.OPEN_CANLENDAR_URL, null, "button", params);
+
+        params = new HashMap<>();
+        params.put("name", "课程表");
+        payload.addHyperUtterance(BotConstants.OPEN_CANLENDAR_URL, null, "button", params);
+
         BotSdk.getInstance().updateUiContext(payload);
     }
 
@@ -165,6 +182,9 @@ public class UiControlFragment extends Fragment implements IBotIntentCallback, V
                 break;
             case R.id.select_two:
                 BotSdk.getInstance().speakRequest("点击了第二个");
+                break;
+            case R.id.open_calendar:
+                BotSdk.getInstance().speakRequest("点击了课程表");
                 break;
         }
     }

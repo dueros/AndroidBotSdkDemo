@@ -18,7 +18,10 @@ public class BotConstants {
     public static final String CLICK_REGISTER_URL = "sdkdemo://clickregister";
     public static final String SELETC_TEST_URL = "sdkdemo://selecttest/";
     public static final String INPUT_TEST_URL = "sdkdemo://inputtest/";
-
+    // 课程表 or 日程表页面
+    public static final String OPEN_CANLENDAR_URL = "dueros://6402fc3a-7825-3147-b52e-c25911b6d03c/entity"
+            + "/timerShow/allUsedList?startDay=MONTH_START_DAY&endDay=MONTH_END_DAY&selectedDay=TODAY&requestType"
+            + "=SHOW&habitChannel=duyayaapk";
     // 连接状态广播
     public static final String ACTION_REGISTER_SUCCESS = "com.baidu.duer.test_botsdk.register_success";
     // 连接状态广播
