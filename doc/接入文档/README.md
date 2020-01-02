@@ -32,3 +32,8 @@
 
 ## H5应用接入DuerOS
 H5应用接入DuerOS可以参考[H5-BotSDK](https://github.com/dueros/h5-bot-sdk)
+
+## DuerOS开放能力
+应用可以根据自己特殊场景需求，通过DuerOS开放能力接口改变设备状态，比如：关闭唤醒，启用唤醒，打断tts，启用手势识别，获取当前设备登录账户的用户信息等等.所有开放能力可以通过BotSdk接口``` BotSdk.getInstance().triggerDuerOSCapacity```对外输出，可以在 [BotSdk Java Doc](https://github.com/dueros/AndroidBotSdkDemo/blob/master/doc/%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3/BotSdkDoc.zip)看到详细接口文档.
+
+开放能力需要特殊权限，有需要请联系百度接口人.
