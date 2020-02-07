@@ -27,7 +27,7 @@
 * 申请成为DuerOS开发者
   * [https://dueros.baidu.com/dbp/](https://dueros.baidu.com/dbp/) 
 * AndroidApp技能类型尚未开放，需要进入到如下页面填入激活码激活AndroidApp技能开发
-  * 激活码``AndroidAPP``
+  * 激活码``8ea5dfe6-2b25-83d8-0f0b-8285ab6a7869-19c45ea4-6deb-a02d-fd36-410c8bb75e86``
   * [https://dueros.baidu.com/dbp/bot/index#/authorization](https://dueros.baidu.com/dbp/bot/index#/authorization)
 * 在DBP上创建技能，类型是Android App
   * packageName
