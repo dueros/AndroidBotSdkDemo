@@ -16,9 +16,10 @@ public class DeviceInfoUtil {
 
     private static final String DeviceInfoAuthorize = "content://com.baidu.baiduaccount.provider.userinfoprovider/";
     public static final String PATH_BDUSS = "bduss";
+    public static final String PATH_DEVICE_BDUSS = "device_bduss";
     public static final String PATH_PASS_INFO = "accountinfo";
     public static final String PATH_USER_ID = "userid";
-    public static final String PATH_CLIENT_ID = "clientid";
+    public static final String PATH_CLIENT_ID = "device_client_id";
 
     /**
      * 使用反射的方式读取设备序列号

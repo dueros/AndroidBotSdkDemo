@@ -51,6 +51,16 @@
                 android:layout_marginStart="20dp"
                 app:layout_constraintTop_toBottomOf="@id/trigger_payment_title"
                 app:layout_constraintLeft_toLeftOf="parent"/>
+        <Button
+                android:text="发起Buy流程"
+                android:textSize="@dimen/hint_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/trigger_buy"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintTop_toBottomOf="@id/trigger_payment_title"
+                app:layout_constraintLeft_toRightOf="@id/trigger_payment"/>
         <TextView
                 android:text="技能外售卖是指，App可以在百度侧注册商品，参加百度的会场类（如双十一）营销活动。
                 用户是在百度营销会场购买，不需要在设备上打开技能.技能外购买是被动处理发货指令,无法主动触发"

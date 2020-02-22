@@ -8,6 +8,7 @@ import com.baidu.duer.bot.event.payload.LinkClickedEventPayload;
 import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.botsdk.IAccountChargeMsgListener;
+import com.baidu.duer.botsdk.util.RequestBotSdkUtil;
 import com.baidu.duer.test_botsdk.R;
 import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
 import com.baidu.duer.test_botsdk.botsdk.IBotIntentCallback;
@@ -15,6 +16,8 @@ import com.baidu.duer.test_botsdk.utils.MockUtil;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +39,7 @@ public class PaymentAndAccountFragment extends Fragment implements IBotIntentCal
     private TextView mResultIntentTv;
     private Button mGrantPhoneNumber;
     private Button mTriggerPayment;
+    private Button mTriggerBuy;
 
     private static final String TAG = "HandleIntentFragment";
     public PaymentAndAccountFragment() {
@@ -57,6 +61,8 @@ public class PaymentAndAccountFragment extends Fragment implements IBotIntentCal
         mGrantPhoneNumber.setOnClickListener(this);
         mTriggerPayment = view.findViewById(R.id.trigger_payment);
         mTriggerPayment.setOnClickListener(this);
+        mTriggerBuy = view.findViewById(R.id.trigger_buy);
+        mTriggerBuy.setOnClickListener(this);
         return view;
     }
 
@@ -106,6 +112,9 @@ public class PaymentAndAccountFragment extends Fragment implements IBotIntentCal
                 linkClickedEventPayload.url = MockUtil.mockGrantPhoneNumberUrl();
                 BotSdk.getInstance().uploadLinkClickedEvent(linkClickedEventPayload);
                 break;
+            case R.id.trigger_buy:
+                RequestBotSdkUtil.requestBuyProduct("123123123123", "191025095313376709");
+                break;
             default:
                 break;
         }
@@ -134,5 +143,24 @@ public class PaymentAndAccountFragment extends Fragment implements IBotIntentCal
                 + "百度侧订单号：%s\n卖方生成的订单号：%s\n订单备注信息：%s";
         mResultIntentTv.setText(String.format(intentResult, purchaseResult, authorizationAmount, capturedAmount,
                 creationTimestamp, baiduOrderReferenceId, sellerOrderId, msg));
+    }
+
+    /**
+     * 购买结果更新
+     * @param purchaseResult 支付结果，SUCCESS 支付成功 -ERROR 支付发生错误
+     * @param productId 商品id
+     * @param baiduOrderId 百度侧订单id
+     * @param sellerOrderId 卖家订单id
+     * @param msg 订单备注信息
+     */
+    @Override
+    public void onBuyStatusUpdated(@NonNull final String purchaseResult,
+                               @NonNull final String productId,
+                            @NonNull final String baiduOrderId,
+                            @NonNull final String sellerOrderId, @Nullable final String msg) {
+        String intentResult = getString(R.string.result_intent) + "\n支付状态更新:%s\n商品id：%s\n"
+                + "百度侧订单号：%s\n卖方生成的订单号：%s\n订单备注信息：%s";
+        mResultIntentTv.setText(String.format(intentResult, purchaseResult, productId, baiduOrderId,
+                sellerOrderId, msg));
     }
 }

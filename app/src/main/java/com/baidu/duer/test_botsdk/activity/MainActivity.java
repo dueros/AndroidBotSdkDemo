@@ -11,6 +11,8 @@ import com.baidu.duer.test_botsdk.utils.BotConstants;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -90,5 +92,11 @@ public class MainActivity extends AppCompatActivity implements IAccountChargeMsg
                                       String s2, String s3) {
         // 处理支付结果回调
         Toast.makeText(MainActivity.this, "支付结果回调, result:" + s, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBuyStatusUpdated(@NonNull String s, @NonNull String s1, @NonNull String s2,
+                                   @NonNull String s3, @Nullable String s4) {
+
     }
 }
