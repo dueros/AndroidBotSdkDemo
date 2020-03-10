@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toBottomOf="@id/ui_control_custom_title"
                 app:layout_constraintLeft_toRightOf="@id/login_btn"/>
         <TextView
-                android:text="选择/打开 第几个的交互组件, 也可以对我说：“小度小度，选择/点击第一个”"
+                android:text="选择/打开 第几个的交互组件, 也可以对我说：“小度小度，选择/点击第一个"
                 android:textSize="@dimen/hint_text_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,6 +71,16 @@
                 android:layout_marginStart="20dp"
                 app:layout_constraintTop_toBottomOf="@id/ui_control_select_title"
                 app:layout_constraintLeft_toRightOf="@id/select_one"/>
+        <Button
+                android:text="打断TTS"
+                android:textSize="@dimen/hint_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/interrupt_tts"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintTop_toBottomOf="@id/ui_control_select_title"
+                app:layout_constraintLeft_toRightOf="@id/select_two"/>
         <TextView
                 android:text="自定义交互组件-输入内容, 也可以对我说：“小度小度，输入北京”"
                 android:textSize="@dimen/hint_text_size"

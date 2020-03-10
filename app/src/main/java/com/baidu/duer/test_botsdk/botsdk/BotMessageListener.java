@@ -15,6 +15,7 @@ import com.baidu.duer.test_botsdk.utils.ContextUtil;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 /**
  * 接入方需要实现的callBack,接受BotSDK下发的意图和事件
