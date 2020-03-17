@@ -1,5 +1,5 @@
 ## Demo使用指引
-编译安装源代码到小度设备，通过语音指令"小度小度，打开单肩包",调起app。app内部有支付接口示例，UIControl示例。可以参考示例代码实现自己的功能.如果有疑问可以参考[FAQ](https://github.com/dueros/AndroidBotSdkDemo/blob/master/FAQ.md)
+编译安装源代码到小度设备，通过语音指令"小度小度，打开单肩包",调起app。app内部有支付接口示例，UIControl示例。可以参考示例代码实现自己的功能.如果有疑问可以参考[<font color=red size=30 >FAQ</font>](https://github.com/dueros/AndroidBotSdkDemo/blob/master/FAQ.md)
 
 ## 需求背景
 
