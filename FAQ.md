@@ -14,4 +14,37 @@
 * (1)使用adb命令发起模拟语音指令，注意这里adb指令是模拟语音指令，不是直接通过ams拉起activity，所以不算做adb拉起引用。
      - 命令：adb shell am broadcast -a com.baidu.duer.query -e q 打开XXX
 * (2)临时使用比较不容易识别错的调用名称顶替一下，比如:"苹果测试"，“测试苹果”之类的
-
+### 4,如何用adb 访问小度设备？如何安装应用？安装应用之后如何打开？
+* (1)小度设备就是一个普通的Android设备，可以通过MicroUSB线连接电脑。设备接口位置比较隐蔽，基本都藏在设备底部后者底部背板附近，或者被缓震脚垫覆盖，或者被标签覆盖。可以参考下图寻找接口位置
+    // 插入图片
+* (2)连接插线连接设备之后，就可以通过adb 安装和调试应用了。如果出现电脑不识别设备的情况，请换插孔，换线尝试连接。推荐使用Mac,Ubuntu等linux电脑连接设备，windows电脑可能有驱动问题(驱动问题请自行解决)。
+* (3)小度设备桌面的图标都是一些link，不是真正应用图标，小度设备也不支持显示应用图标。应该只通过集成botsdk，创建技能，然后语音命令拉起。原因详见问题（FAQ.1）
+### 5,如何获取设备序列号？
+代码库中有获取设备序列号的示例代码，请照抄即可。[DeviceInfoUti.java](https://github.com/dueros/AndroidBotSdkDemo/blob/master/app/src/main/java/com/baidu/duer/test_botsdk/utils/DeviceInfoUtil.java)
+```java
+    /**
+     * 使用反射的方式读取设备序列号
+     * @return
+     */
+    public static String getSerialNumber() {
+        try {
+            Class<?> clz = DeviceInfoUtil.class.getClassLoader().loadClass("android.os.SystemProperties");
+            Method method = clz.getMethod("get", String.class);
+            Object value = method.invoke(null, "ro.serialno");
+            return value == null ? null : value.toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+```
+### 6, 如何调用设备Camera
+因为音箱设备特殊性（客厅/卧室等私人空间，设备常开），所以Camera权限非常敏感，正常来说不允许App调用设备Camera能力.系统侧增加了额外的camera权限白名单，非白名单应用也无法调用camera。所以，如非必要，请不要尝试访问小度设备Camera(访问也访问不到)。
+如果跟百度PM确认过，App场景确实需要访问camera，可以通过如下方式开发调试。
+- 1.确认设备版本号，是以D结尾（D结尾的是开发版本可以测试camera，R结尾的是用户版本不可用于测试camera）
+    ```bash
+    adb shell getprop ro.build.display.id
+    输出结果类似如下,需要确认的就是结尾字符是R,还是D
+    DuerShow_PUFFER1S_v0.37.0.202003240105.D
+    ```
+- 2.确认系统可以支持调试camera之后，此时就可以正常调用camera了。可以参考这个demo代码库[CameraDemo](https://github.com/TokenChen/CameraDemo)
+- 3.调试完毕，正式上线之前，一定通知百度侧PM，把应用包名加入到访问Camera白名单中。否则调试环境可以正常运行，线上环境依然无法访问Camera.

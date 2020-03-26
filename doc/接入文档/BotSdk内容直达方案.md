@@ -9,7 +9,7 @@
 * 教育场景: 用户通过语音指令（比如我要上三年级课程，我要学外教课），打开教育类应用课堂页面，加载对应课程内容
 * .......
 ## 2.BotSdk内容直达实现方案
-### 2.1度秘端配置
+### 2.1度秘端配置【度秘语音云端关注】
 运营同学在配置打开应用的linkclick地址中，添加特定的标记字段。dueros打开应用后，将特定的标记字段传递到第三方应用内，第三方应用根据此标记字段打开特定的场景和页面。
 
 **linkclick地址格式（度秘运营同学配置)**
@@ -21,11 +21,11 @@ dueros://{{botId}}/path?openbot=true&request={\"query\":{\"type\":\"TEXT\",\"ori
 - {{action}}：要下发的页面
 - {{url}}：要下发的参数
 
-### 2.2botsdk拉起流程
+### 2.2botsdk拉起流程【BotSdk关注】
 - BotSdk目前支持的页面拉起方式,通过 packageName + action（默认匹配启动页）匹配符合条件的activity，如果匹配结果不为空，则拉起对应页面。
 - BotSdk会在拉起Activity的Intent中传入参数:url[Nullable] 可用于指定资源内容. 
 - **url格式和action就是俩String，格式无固定要求，App开发者和度秘后端对齐即可**
-### 2.3App启动和资源加载
+### 2.3App启动和资源加载【App开发者关注】
 - Activity被拉起后，可以通过getIntent().getStringExtra("url") 的方式，获取url，此url来源于度秘运营配置，经过Botsdk透传至App
 - 拿到url之后，App可以根据自己的业务逻辑，加载对应资源
 ### 2.4流程图
