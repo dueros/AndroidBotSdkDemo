@@ -1,11 +1,12 @@
 ## 快速开始
-[快速开始](https://github.com/dueros/AndroidBotSdkDemo/wiki/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B----APK%E6%8E%A5%E5%85%A5%E5%B0%8F%E5%BA%A6%E8%AE%BE%E5%A4%87)
+[快速开始-App接入小度设备](https://github.com/dueros/AndroidBotSdkDemo/wiki/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B----APK%E6%8E%A5%E5%85%A5%E5%B0%8F%E5%BA%A6%E8%AE%BE%E5%A4%87)
 
-[常见问题](https://github.com/dueros/AndroidBotSdkDemo/blob/master/FAQ.md)
+[接入过程-常见问题](https://github.com/dueros/AndroidBotSdkDemo/blob/master/FAQ.md)
 ## Demo使用指引
 [文档集合](https://github.com/dueros/AndroidBotSdkDemo/tree/master/doc/%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3)
 建议参考快速开始，跑通demo之后，再查阅文档。
-代码介绍
+
+核心代码介绍
 - [意图处理](https://github.com/dueros/AndroidBotSdkDemo/blob/master/app/src/main/java/com/baidu/duer/test_botsdk/fragment/HandleIntentFragment.java)
 - [自定义交互组件](https://github.com/dueros/AndroidBotSdkDemo/blob/master/app/src/main/java/com/baidu/duer/test_botsdk/fragment/UiControlFragment.java)
 - [登录支付](https://github.com/dueros/AndroidBotSdkDemo/blob/master/app/src/main/java/com/baidu/duer/test_botsdk/fragment/PaymentAndAccountFragment.java)
@@ -14,7 +15,7 @@
 ## 流程图
 如下流程图简要介绍了，小度语音是如何工作的。核心流程可以理解成：
 1. 开发者在DBP平台，定义语音文本和用户意图的匹配关系
-2. 小度系统处理用户语音数据，解析为语音文本信息，匹配开发者预先注册的信息。返回apk可识别的子串。
+2. 小度系统处理用户语音数据，解析为语音文本信息，匹配开发者预先注册的信息。返回apk可识别的字符串。
 ### 流程1: 打开bot app
 
 
