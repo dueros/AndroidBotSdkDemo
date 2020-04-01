@@ -2,6 +2,8 @@
 [快速开始-App接入小度设备](https://github.com/dueros/AndroidBotSdkDemo/wiki/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B----APK%E6%8E%A5%E5%85%A5%E5%B0%8F%E5%BA%A6%E8%AE%BE%E5%A4%87)
 
 [接入过程-常见问题](https://github.com/dueros/AndroidBotSdkDemo/blob/master/FAQ.md)
+
+[问题反馈](https://github.com/dueros/AndroidBotSdkDemo/issues/3),建议去issue中提问，人人为我，我为人人！
 ## Demo使用指引
 [文档集合](https://github.com/dueros/AndroidBotSdkDemo/tree/master/doc/%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3)
 建议参考快速开始，跑通demo之后，再查阅文档。
