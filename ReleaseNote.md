@@ -20,3 +20,4 @@
 - 变更内容
   * 增加Camera 启用/禁用 状态获取和通知接口
 - Launcher版本依赖:大于1.37.0.0
+- Demo提交：commitId:*6dda6bc3b2497029212a57d9bb3cc7c05a5183cc*
