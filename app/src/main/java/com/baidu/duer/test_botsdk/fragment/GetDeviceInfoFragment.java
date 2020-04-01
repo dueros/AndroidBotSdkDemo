@@ -38,6 +38,7 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
     private Button mReportClickLinkEvent;
     private Button mModifyWakeUpStatus;
     private Button mRequestBabyInfo;
+    private Button mRequestCameraInfo;
 
     private static final String TAG = "HandleIntentFragment";
     public GetDeviceInfoFragment() {
@@ -76,6 +77,8 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
         mModifyWakeUpStatus.setOnClickListener(this);
         mRequestBabyInfo = view.findViewById(R.id.request_baby_info);
         mRequestBabyInfo .setOnClickListener(this);
+        mRequestCameraInfo = view.findViewById(R.id.request_camera_info);
+        mRequestCameraInfo.setOnClickListener(this);
     }
 
 
@@ -123,6 +126,16 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
                 break;
             case R.id.request_baby_info:
                 BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_REQUEST_BABY_INFO, null);
+                break;
+            case R.id.request_camera_info:
+                /**
+                 * 通过下述方法调用获取camera状态
+                 * camera状态返回结果通过HandleIntent指令返回，可以参考{@link handleIntent}方法处理返回意图
+                 * 意图名称：com.baidu.duer.cameraStateChanged
+                 * curstomData: ENABLED
+                 * <b>后续只要应用在前台，如果camera状态发生变化，都会通过此意图通知App</b>
+                 */
+                BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_GET_CAMERA_STATE, null);
                 break;
 
         }
