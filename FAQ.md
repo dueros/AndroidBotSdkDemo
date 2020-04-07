@@ -18,7 +18,6 @@
 * (1)小度设备就是一个普通的Android设备，可以通过MicroUSB线连接电脑。设备接口位置比较隐蔽，基本都藏在设备底部后者底部背板附近，或者被缓震脚垫覆盖，或者被标签覆盖。可以参考下图寻找接口位置
     ![插口示例图](https://github.com/dueros/AndroidBotSdkDemo/blob/master/doc/resources/%E6%8F%92%E5%8F%A3%E7%A4%BA%E4%BE%8B%E5%9B%BE%E7%89%87.png)
 * (2)连接插线连接设备之后，就可以通过adb 安装和调试应用了。如果出现电脑不识别设备的情况，请换插孔，换线尝试连接。推荐使用Mac,Ubuntu等linux电脑连接设备，windows电脑可能有驱动问题(驱动问题请自行解决)。
-* (3)小度设备桌面的图标都是一些link，不是真正应用图标，小度设备也不支持显示应用图标。应该只通过集成botsdk，创建技能，然后语音命令拉起。原因详见问题（FAQ.1）
 ### 5,如何获取设备序列号？
 代码库中有获取设备序列号的示例代码，请照抄即可。[DeviceInfoUti.java](https://github.com/dueros/AndroidBotSdkDemo/blob/master/app/src/main/java/com/baidu/duer/test_botsdk/utils/DeviceInfoUtil.java)
 ```java
@@ -58,4 +57,10 @@
 ### 10，adb连接设备提示未授权(adb devices unauthorized)？
 我们对外寄出的设备，默认是user版本，不开放adb权限。
 在遇到未授权的case是，请联系百度PM，或者通过issue提交设备号。我们收到之后会推送开发版本升级。升级之后的系统版本号以1.99开头，此时就可以用adb正常访问设备了。
+### 11，应用安装后再小度桌面找不到应用图标? 安装应用后应该如何打开？
+* 小度桌面不同于传统Android Launcher，不会显示应用图标。
+* 小度设备桌面的图标都是一些云端配置的链接，不是真正应用图标，点击链接是发起一次云端交互，下发指令打开对应内容（有可能是浏览器，有可能是三方页面，也有可能是系统设置页......)
+* 调试阶段，如果未集成BotSdk,可以用AndroidStudio或者adb 拉起。集成BotSdk之后，应该通过语音指令调起。原因详见**问题（1）**
 
+小度桌面不同于传统Android Launcher，不会显示应用图标。
+小度桌面不同于传统Android Launcher，不会显示应用图标。
