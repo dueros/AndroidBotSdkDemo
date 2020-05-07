@@ -35,6 +35,19 @@ dueros://{{botId}}/path?openbot=true&request={\"query\":{\"type\":\"TEXT\",\"ori
 1. 小度设备展示一个系统弹窗（或者QSB图标/HomeFeed卡片），点击之后上报一个LinkClicked事件给到度秘云端。事件的url内容为(核心值为加粗的action 和 url，都可为空。参数为空表示拉起应用主页，不带参数):
 
     dueros://{{botId}}/path?openbot=true&request={\"query\":{\"type\":\"TEXT\",\"original\":\"打开技能\"},\"intents\":[{\"name\":\"OpenBot\",\"slots\":{\"url\":{\"name\":\"url\",\"value\":\"**test://test_for_open_bot?query1=1&query2=2**\"},\"action\":{\"name\":\"action\",\"value\":\"**com.android.action.TEST_FOR_OPEN**\"}}}]}
+    
+    ```java
+            // 模拟上报事件的一段java代码（会拉起快手app，并播放一个指定视频）
+            LinkClickedEventPayload payload = new LinkClickedEventPayload();
+            payload.url = "dueros://4cc38e70-73e7-2111-b2d2-f84ffebeb5d2/path?openbot=true"
+                    + "&request={\\\"query\\\": {\\\"type\\\": \\\"TEXT\\\", \\\"original\\\": "
+                    + "\\\"打开技能\\\"}, \\\"intents\\\": [{\\\"slots\\\": {\\\"url\\\": "
+                    + "{\\\"name\\\": \\\"url\\\", \\\"value\\\": "
+                    + "\\\"kwai://work/3xuwky9q3t8rspu?openFrom=null\\\"}, \\\"action\\\": "
+                    + "{\\\"name\\\": \\\"action\\\", \\\"value\\\": \\\"kwai.action\\\"}}, "
+                    + "\\\"name\\\": \\\"OpenBot\\\"}]}";
+            BotSdk.getInstance().uploadLinkClickedEvent(payload);
+    ```
 
 2. 度秘云端收到LinkClicked事件，下发一个Open指令打开应用[协议地址（百度内网可访问）](http://icode.baidu.com/repos/baidu/duer/open-platform-api-doc/blob/master:dueros-conversational-service/device-interface/bot-app-sdk-private.md),指令中会带上packageName和（1）中加粗的action(**com.android.action.TEST_FOR_OEPN**) + url(**test://test_for_open_bot?query1=1&query2=2**) 两个参数.
 3. 小度设备收到并处理Open指令，拉起应用。拉起应用的intent获取逻辑如下：
