@@ -1,8 +1,10 @@
 package com.baidu.duer.test_botsdk.fragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.baidu.duer.bot.BotMessageProtocol;
+import com.baidu.duer.bot.directive.payload.JsonUtil;
 import com.baidu.duer.bot.event.payload.LinkClickedEventPayload;
 import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.BotSdk;
@@ -39,6 +41,7 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
     private Button mModifyWakeUpStatus;
     private Button mRequestBabyInfo;
     private Button mRequestCameraInfo;
+    private Button mRegisteGestureList;
 
     private static final String TAG = "HandleIntentFragment";
     public GetDeviceInfoFragment() {
@@ -79,6 +82,8 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
         mRequestBabyInfo .setOnClickListener(this);
         mRequestCameraInfo = view.findViewById(R.id.request_camera_info);
         mRequestCameraInfo.setOnClickListener(this);
+        mRegisteGestureList = view.findViewById(R.id.register_gesture_list);
+        mRegisteGestureList.setOnClickListener(this);
     }
 
 
@@ -136,6 +141,19 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
                  * <b>后续只要应用在前台，如果camera状态发生变化，都会通过此意图通知App</b>
                  */
                 BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_GET_CAMERA_STATE, null);
+                break;
+            case R.id.register_gesture_list:
+                // 注册手势列表到系统，如果手势列表传空，表示当前不再支持手势模式
+                // （因为支持手势，系统侧需要运行视觉相关服务，切到不支持手势的页面，请清空手势支持）
+                BotMessageProtocol.GestureRegisterParams gestureRegisterParams =
+                        new BotMessageProtocol.GestureRegisterParams();
+                gestureRegisterParams.enabledGestures = new ArrayList<>();
+                gestureRegisterParams.enabledGestures.add(BotMessageProtocol.AiDuerGesture.GESTURE_OK);
+                gestureRegisterParams.enabledGestures.add(BotMessageProtocol.AiDuerGesture.GESTURE_PALM);
+                gestureRegisterParams.enabledGestures.add(BotMessageProtocol.AiDuerGesture.GESTURE_LEFT);
+                gestureRegisterParams.enabledGestures.add(BotMessageProtocol.AiDuerGesture.GESTURE_RIGHT);
+                BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_GESTURE_REGISTER,
+                        JsonUtil.toJson(gestureRegisterParams));
                 break;
 
         }

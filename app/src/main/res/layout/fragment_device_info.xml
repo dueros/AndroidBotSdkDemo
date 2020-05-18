@@ -163,6 +163,26 @@
                 app:layout_constraintTop_toBottomOf="@id/request_camera_info_title"
                 app:layout_constraintLeft_toLeftOf="parent"/>
         <TextView
+                android:text="手势能力，手势能力是一种新的交互方式，用户可以通过对着摄像头做手势完成交互"
+                android:textSize="@dimen/hint_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintTop_toBottomOf="@id/request_camera_info"
+                android:id="@+id/gesture_list_title"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+        <Button
+                android:text="注册手势能力"
+                android:textSize="@dimen/hint_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_gesture_list"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintTop_toBottomOf="@id/gesture_list_title"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+        <TextView
                 android:text="@string/result_intent"
                 android:textSize="@dimen/hint_text_size"
                 android:layout_width="match_parent"
@@ -174,7 +194,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="30dp"
                 android:id="@+id/result_intent_detail"
-                app:layout_constraintTop_toBottomOf="@id/request_camera_info"
+                app:layout_constraintTop_toBottomOf="@id/register_gesture_list"
                 app:layout_constraintLeft_toLeftOf="parent"/>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
