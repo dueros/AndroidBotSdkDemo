@@ -7,8 +7,13 @@
     adb shell pm dump com.baidu.launcher|grep -i version
    ``` 
 
-
 ## 发布历史
+### 1.39.0
+- 变更内容
+  * 增加手势能力支持。[手势文档](https://github.com/dueros/AndroidBotSdkDemo/wiki/2.-DuerShow%E7%89%B9%E8%89%B2%E8%83%BD%E5%8A%9B-%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB)
+- Launcher版本依赖，Launcher版本大于等于1.39.0.0
+- Demo提交：7f13525b6ce64652cd53f6912e1948506cdeff8f
+
 ### 1.35.5
 - 变更内容
   * 增加打断tts接口演示
