@@ -71,4 +71,8 @@ maven{ url 'https://dueros.baidu.com/maven/repository/maven-releases/'}
 implementation 'com.alibaba:fastjson:1.1.71.android'
 implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.32.0@aar'
 ```
+混淆配置
+```gradle
+-keep class com.baidu.duer.bot.** {*;}
+```
 然后参考以上代码示例进行集成
