@@ -10,13 +10,29 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    signingConfigs {
+        botsdkDemoConfig {
+            keyAlias 'key0'
+            keyPassword 'botsdkdemo'
+            storeFile file('DuerShow-BotSdk-Demo.jks')
+            storePassword 'botsdkdemo'
         }
     }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.botsdkDemoConfig
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.botsdkDemoConfig
+        }
+    }
+
 }
+
 repositories {
     flatDir {
         dirs 'libs'
