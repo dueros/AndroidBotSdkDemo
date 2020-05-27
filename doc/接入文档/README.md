@@ -5,14 +5,13 @@
 
 ## 基础概念
 
-基础概念部分包含系统架构介绍，平台使用指南。文档中会介绍一些基础概念，这些基础概念可以帮助理解整个系统工作原理。
- - [DuerOS接入快速指南-App接入.pdf](DuerOS%E6%8E%A5%E5%85%A5%E5%BF%AB%E9%80%9F%E6%8C%87%E5%8D%97-App%E6%8E%A5%E5%85%A5.pdf)
- - [DBP平台使用指南.pdf](DBP%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.pdf)
-
 ## APP Demo 快速入门
 
 这一部分可以协助APP开发者快速跑起来一个demo，验证环境是否可用。
- - [BotSDK Demo开发指南.pdf](BotSDK%20Demo%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.pdf)
+ - [快速接入](https://github.com/dueros/AndroidBotSdkDemo/wiki/1.%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B---APK%E6%8E%A5%E5%85%A5%E5%B0%8F%E5%BA%A6%E8%AE%BE%E5%A4%87)
+
+基础概念部分包含系统架构介绍，平台使用指南。文档中会介绍一些基础概念，这些基础概念可以帮助理解整个系统工作原理。
+ - [DuerOS接入快速指南-App接入.pdf](DuerOS%E6%8E%A5%E5%85%A5%E5%BF%AB%E9%80%9F%E6%8C%87%E5%8D%97-App%E6%8E%A5%E5%85%A5.pdf)
 
 ## 支付
 用户可以在App内部发起会员权益或者虚拟物品的购买行为。DuerOS可以提供收银台，支付结果通知和发货指令的能力。调用DuerOS发起支付流程可以参考文档：[支付接入方案](https://github.com/dueros/AndroidBotSdkDemo/blob/master/doc/%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%85%A5%E6%96%B9%E6%A1%88.pdf)
