@@ -111,6 +111,11 @@ public class UiControlFragment extends Fragment implements IBotIntentCallback, V
         mResultIntentTv.append("\n");
     }
 
+    /**
+     * 云端返回的UIContext匹配结果
+     * @param url 自定义交互描述中的url
+     * @param paramMap 对于系统内建类型，参数列表。参数就是从query中通过分词取得的关键词。
+     */
     @Override
     public void onClickLink(String url, HashMap<String, String> paramMap) {
         String intentResult = getString(R.string.result_intent) + "\n指令匹配url:%s\n参数信息:%s";
