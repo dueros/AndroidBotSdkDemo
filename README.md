@@ -53,9 +53,11 @@
 
 完成开发的app，可以在小度设备上完成测试
 
-* 在<font size=8 color=red>小度设备</font>上安装开发完成的android app
+* 因为线上版本不支持adb调试，需要首先升级小度设备到开发版本。当前支持的设备型号包括：小度在家1S，小度在家1A,小度在家X8。仅支持公版设备，不支持运营商版本。升级流程：
+![升级流程](https://github.com/dueros/AndroidBotSdkDemo/blob/master/doc/resources/ReadMe-Resources/%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7.png)
+升级成功后，下载并替换adbkey。
+* 在<font size=8 color=red>升级到开发版的小度设备</font>上安装开发完成的android app
 * 在Dbp上打开真机调试
-![真机调试](doc/screen_shot1.png)
 * “打开技能调试模式”，听完设置成功的tts不要打断
 * “打开【调用名称】”，android app会被启动
 
