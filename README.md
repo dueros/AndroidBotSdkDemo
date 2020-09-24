@@ -75,6 +75,6 @@ implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.32.0@aar'
 ```
 混淆配置
 ```gradle
--keep class com.baidu.duer.bot.** {*;}
+-keep class com.baidu.duer.** {*;}
 ```
 然后参考以上代码示例进行集成
