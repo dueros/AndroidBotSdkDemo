@@ -8,6 +8,11 @@
    ``` 
 
 ## 发布历史
+
+### 1.44.0
+- 变更内容
+  * 修复云应用事件上报包名异常问题。
+  
 ### 1.40.0
 - 变更内容
   * 增加手势能力支持。[手势文档](https://github.com/dueros/AndroidBotSdkDemo/wiki/2.-DuerShow%E7%89%B9%E8%89%B2%E8%83%BD%E5%8A%9B-%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB)
