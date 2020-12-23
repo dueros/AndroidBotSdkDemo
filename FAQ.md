@@ -21,7 +21,9 @@
     ![插口示例图](https://github.com/dueros/AndroidBotSdkDemo/blob/master/doc/resources/%E6%8F%92%E5%8F%A3%E7%A4%BA%E4%BE%8B%E5%9B%BE%E7%89%87.png)
 2. 连接插线连接设备之后，就可以通过adb 安装和调试应用了。如果出现电脑不识别设备的情况，请换插孔，换线尝试连接。推荐使用Mac,Ubuntu等linux电脑连接设备，windows电脑可能有驱动问题(驱动问题请自行解决)。
 ### 6,如何获取设备序列号？
-代码库中有获取设备序列号的示例代码，请照抄即可。[DeviceInfoUti.java](https://github.com/dueros/AndroidBotSdkDemo/blob/master/app/src/main/java/com/baidu/duer/test_botsdk/utils/DeviceInfoUtil.java)
+<font color="#FFFF00">_**DuerOS后续会收紧设备序列号读取权限，三方应用无法通过反射调用读取到序列号。请通过其他方式满足业务需求。**_</font>
+
+~~代码库中有获取设备序列号的示例代码，请照抄即可。~~[DeviceInfoUti.java](https://github.com/dueros/AndroidBotSdkDemo/blob/master/app/src/main/java/com/baidu/duer/test_botsdk/utils/DeviceInfoUtil.java)
 ```java
     /**
      * 使用反射的方式读取设备序列号
