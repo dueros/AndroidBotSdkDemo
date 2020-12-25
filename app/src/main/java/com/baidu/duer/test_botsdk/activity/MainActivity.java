@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity implements IAccountChargeMsg
     }
 
     @Override
-    public void onBuyStatusUpdated(@NonNull String s, @NonNull String s1, @NonNull String s2,
-                                   @NonNull String s3, @Nullable String s4) {
+    public void onBuyStatusUpdated(@NonNull String s, @NonNull String s1, @NonNull String s2, @NonNull String s3, @Nullable String s4, @NonNull String s5) {
 
     }
+
 }

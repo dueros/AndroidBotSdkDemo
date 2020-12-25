@@ -157,7 +157,7 @@ public class PaymentAndAccountFragment extends Fragment implements IBotIntentCal
     public void onBuyStatusUpdated(@NonNull final String purchaseResult,
                                @NonNull final String productId,
                             @NonNull final String baiduOrderId,
-                            @NonNull final String sellerOrderId, @Nullable final String msg) {
+                            @NonNull final String sellerOrderId, @Nullable final String msg,String token) {
         String intentResult = getString(R.string.result_intent) + "\n支付状态更新:%s\n商品id：%s\n"
                 + "百度侧订单号：%s\n卖方生成的订单号：%s\n订单备注信息：%s";
         mResultIntentTv.setText(String.format(intentResult, purchaseResult, productId, baiduOrderId,
