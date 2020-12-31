@@ -71,10 +71,12 @@ maven{ url 'https://dueros.baidu.com/maven/repository/maven-releases/'}
 在app/build.gradle加入依赖
 ```gradle
 implementation 'com.alibaba:fastjson:1.1.71.android'
-implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.44.0'
+implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.45.0'
+implementation 'com.baidu.yunapp:operationsdk-cloud:1.0.5'
 ```
 混淆配置
 ```gradle
 -keep class com.baidu.duer.** {*;}
+-keep class com.baidu.operationsdk.**{*;}
 ```
 然后参考以上代码示例进行集成
