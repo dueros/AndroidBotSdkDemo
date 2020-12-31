@@ -1,0 +1,10 @@
+com.baidu.duer.bot
+com.baidu.duer.bot.directive.payload
+com.baidu.duer.bot.event.payload
+com.baidu.duer.bot.util
+com.baidu.duer.botsdk
+com.baidu.duer.botsdk.gamebox
+com.baidu.duer.botsdk.util
+com.baidu.duer.botsdk.util.messageutil
+com.baidu.duer.botsdk.util.messageutil.appmessagepayload
+com.baidu.duer.botsdk.util.messageutil.botmessagepayload
