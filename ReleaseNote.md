@@ -13,6 +13,7 @@
 - 变更内容
   * 增加支持离线校验，离线校验速度更快，支持无网情况下进行技能信息验证
 - Launcher版本依赖，Launcher版本大于等于1.40.0.0
+- Demo提交：[支持离线校验](https://github.com/dueros/AndroidBotSdkDemo/commit/b99e40c22b6e8a5e6622b440c0d06e55b39ed41e)
 
 ### 1.45.0
 - 变更内容
