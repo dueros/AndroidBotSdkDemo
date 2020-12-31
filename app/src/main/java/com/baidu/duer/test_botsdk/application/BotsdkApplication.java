@@ -12,7 +12,6 @@ import com.baidu.duer.test_botsdk.utils.ContextUtil;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.os.Bundle;
 
 /**
@@ -31,11 +30,22 @@ public class BotsdkApplication extends Application {
         BotSdk.getInstance().init(this);
         // 打开BotSDK的Log开关，开发阶段建议打开Log开关，便于排查问题
         BotSdk.enableLog(true);
-        // TODO 替换自己的注册信息
-        String random1 = BotConstants.RANDOM1_PREFIX + Math.random();
-        String random2 = BotConstants.RANDOM2_PREFIX + Math.random();
-        BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, random1,
-               BotSDKUtils.sign(random1), random2, BotSDKUtils.sign(random2));
+        /**
+         * 旧版本在线注册接口.在线校验支持所有系统版本。缺点：速度稍慢，依赖网络
+         */
+        // // TODO 替换自己的注册信息
+        // String random1 = BotConstants.RANDOM1_PREFIX + Math.random();
+        // String random2 = BotConstants.RANDOM2_PREFIX + Math.random();
+        // BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, random1,
+        //        BotSDKUtils.sign(random1), random2, BotSDKUtils.sign(random2));
+        /**
+         * 1.46.0版本开始，支持离线校验。依赖系统版本大于等于1.46
+         * 离线校验不依赖网络，速度更快。支持无网情况进行验证。但是需要依赖系统版本大于等于Sp46
+         * 离线校验，需要在技能平台，打开离线校验开关，下载License文件，打包到assets/dueros/目录内
+         * sdk会读取license文件，进行离线校验
+         */
+        BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, BotSDKUtils.getAppKey());
+
         registerActivityLifecycleCallbacks(new ActivityContollor());
     }
 

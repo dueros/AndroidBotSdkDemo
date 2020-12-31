@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * 接入方需要实现的callBack,接受BotSDK下发的意图和事件
@@ -122,7 +123,7 @@ public class BotMessageListener implements IBotMessageListener {
 
     @Override
     public void onRegisterFailed(int i) {
-
+        Toast.makeText(ContextUtil.getContext(), "注册失败", Toast.LENGTH_LONG).show();
     }
 
     @Override
