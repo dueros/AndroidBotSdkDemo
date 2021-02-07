@@ -1,6 +1,5 @@
 package com.baidu.duer.test_botsdk.utils;
 
-import java.lang.reflect.Method;
 import java.util.Objects;
 
 import android.database.Cursor;
@@ -23,22 +22,6 @@ public class DeviceInfoUtil {
     public static final String FAMILY_NUMBER = "family_number";
     public static final String DUMI_USER_DEVICE_ID = "dumi_user_device_id";
     public static final String DUMI_CUID = "dumi_cuid";
-
-    /**
-     * @Depreated 小度设备收紧SN管理策略，Sp46开始，此方法不再提供支持，请开发者避免读取此字段.
-     * 使用反射的方式读取设备序列号
-     * @return
-     */
-    public static String getSerialNumber() {
-        try {
-            Class<?> clz = DeviceInfoUtil.class.getClassLoader().loadClass("android.os.SystemProperties");
-            Method method = clz.getMethod("get", String.class);
-            Object value = method.invoke(null, "ro.serialno");
-            return value == null ? null : value.toString();
-        } catch (Exception e) {
-            return null;
-        }
-    }
 
     /**
      * 读取UserInfoProvider
