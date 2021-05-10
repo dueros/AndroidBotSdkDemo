@@ -8,6 +8,7 @@ import com.baidu.duer.bot.directive.payload.JsonUtil;
 import com.baidu.duer.bot.event.payload.LinkClickedEventPayload;
 import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.BotSdk;
+import com.baidu.duer.botsdk.util.RequestBotSdkUtil;
 import com.baidu.duer.test_botsdk.R;
 import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
 import com.baidu.duer.test_botsdk.botsdk.IBotIntentCallback;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 自定义交互组件Demo页面，包括如下demo
@@ -39,7 +41,7 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
     private Button mReadDeviceSerialNumber;
     private Button mReportClickLinkEvent;
     private Button mModifyWakeUpStatus;
-    private Button mRequestBabyInfo;
+    private Button mTriggerFaceUnlock;
     private Button mRequestCameraInfo;
     private Button mRegisteGestureList;
 
@@ -78,8 +80,8 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
         mReportClickLinkEvent.setOnClickListener(this);
         mModifyWakeUpStatus = view.findViewById(R.id.update_modify_wakeup_state);
         mModifyWakeUpStatus.setOnClickListener(this);
-        mRequestBabyInfo = view.findViewById(R.id.request_baby_info);
-        mRequestBabyInfo .setOnClickListener(this);
+        mTriggerFaceUnlock = view.findViewById(R.id.request_face_unlock);
+        mTriggerFaceUnlock.setOnClickListener(this);
         mRequestCameraInfo = view.findViewById(R.id.request_camera_info);
         mRequestCameraInfo.setOnClickListener(this);
         mRegisteGestureList = view.findViewById(R.id.register_gesture_list);
@@ -106,7 +108,7 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.read_device_serial_number:
-                mResultIntentTv.setText(DeviceInfoUtil.getSerialNumber());
+                Toast.makeText(getContext(),"请参考Google原生方案获取设备id，设备sn不再开放给普通app读取", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.get_userid:
                 mResultIntentTv.setText(DeviceInfoUtil.getUserInfo(DeviceInfoUtil.PATH_USER_ID));
@@ -129,8 +131,10 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
             case R.id.update_modify_wakeup_state:
                 BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_DISABLE_WAKEUP, null);
                 break;
-            case R.id.request_baby_info:
-                BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_REQUEST_BABY_INFO, null);
+            case R.id.request_face_unlock:
+                BotMessageProtocol.BaseDuerCapacityParamInfo paramInfo = new BotMessageProtocol.BaseDuerCapacityParamInfo();
+                paramInfo.requestId = RequestBotSdkUtil.generateRequestId();
+                BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_OPEN_FACE_UNLOCK, JsonUtil.toJson(paramInfo));
                 break;
             case R.id.request_camera_info:
                 /**
