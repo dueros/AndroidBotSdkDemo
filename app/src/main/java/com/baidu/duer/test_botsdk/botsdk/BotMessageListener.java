@@ -130,5 +130,6 @@ public class BotMessageListener implements IBotMessageListener {
     public void onRegisterSucceed() {
         Intent intent = new Intent(BotConstants.ACTION_REGISTER_SUCCESS);
         LocalBroadcastManager.getInstance(ContextUtil.getContext()).sendBroadcastSync(intent);
+        Log.i("BotSdk", "register success");
     }
 }

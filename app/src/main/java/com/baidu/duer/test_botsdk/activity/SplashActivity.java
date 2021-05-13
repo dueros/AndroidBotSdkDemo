@@ -1,6 +1,9 @@
 package com.baidu.duer.test_botsdk.activity;
 
+import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.test_botsdk.R;
+import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
+import com.baidu.duer.test_botsdk.botsdk.BotSDKUtils;
 import com.baidu.duer.test_botsdk.utils.BotConstants;
 
 import android.content.BroadcastReceiver;
@@ -19,6 +22,8 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, BotSDKUtils.getAppKey());
+
         setContentView(R.layout.splash_layout);
 
         IntentFilter intentFilter = new IntentFilter();
@@ -52,7 +57,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startMainActivity() {
-        Intent intent1 = new Intent(SplashActivity.this, MainActivity.class);
+        Intent intent1 = new Intent(SplashActivity.this, BotSdkDemoActivity.class);
         startActivity(intent1);
     }
 }

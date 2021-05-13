@@ -17,6 +17,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,7 @@ import android.widget.Toast;
  * 3， 用户手机号一键授权，支付功能验证
  * 5， 宿主端信息获取，包括设备bduss，登录用户的user
  */
-public class MainActivity extends AppCompatActivity implements IAccountChargeMsgListener {
+public class BotSdkDemoActivity extends AppCompatActivity implements IAccountChargeMsgListener {
 
     private static final String TAG = "testMainActivity";
 
@@ -42,8 +43,16 @@ public class MainActivity extends AppCompatActivity implements IAccountChargeMsg
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("BotSdk Demo");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_arrow);
         initView();
         //BotSdk.getInstance().setAccountAndChargeListener(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -91,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements IAccountChargeMsg
     public void onChargeStatusUpdated(String s, AmountInfo amountInfo, AmountInfo amountInfo1, long l, String s1,
                                       String s2, String s3) {
         // 处理支付结果回调
-        Toast.makeText(MainActivity.this, "支付结果回调, result:" + s, Toast.LENGTH_LONG).show();
+        Toast.makeText(BotSdkDemoActivity.this, "支付结果回调, result:" + s, Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -36,8 +36,6 @@ public class BotsdkApplication extends Application {
         // // TODO 替换自己的注册信息
         String random1 = BotConstants.RANDOM1_PREFIX + Math.random();
         String random2 = BotConstants.RANDOM2_PREFIX + Math.random();
-        BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, random1,
-               BotSDKUtils.sign(random1), random2, BotSDKUtils.sign(random2));
         /**
          * 1.46.0版本开始，支持离线校验。依赖系统版本大于等于1.46
          * 离线校验不依赖网络，速度更快。支持无网情况进行验证。但是需要依赖系统版本大于等于Sp46

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.ice.coursetable.activity.CameraActivity">
+
+
+        <SurfaceView
+            android:id="@+id/surfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="返回"
+                android:textSize="20dp"
+                android:padding="20dp"
+                android:layout_marginStart="100dp"
+                android:layout_alignParentStart="true"/>
+
+            <ImageButton
+                android:id="@+id/btn_control"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:background="@null"
+                android:scaleType="centerInside"
+                android:src="@drawable/takephoto" />
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/picture_thumbnail"
+                android:background="@android:color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="100dp"
+                />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
