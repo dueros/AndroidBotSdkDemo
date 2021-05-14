@@ -7,4 +7,19 @@
     <string name="result_intent">指令返回结果:</string>
 
     <string name="ui_control_custom">自定义交互的组件,可以对我说：“小度小度，点击登录/注册”</string>
+
+    <string name="audio_recording">Recording</string>
+    <string name="audio_start_record">Start Record</string>
+    <string name="audio_playing">Playing</string>
+    <string name="audio_start_play">Start Play</string>
+    <string name="audio_record_duration">Duration:</string>
+
+    <string name="audio_format">Format</string>
+    <string name="radio_double_voice_channel">双声道</string>
+    <string name="radio_single_voice_channel">单声道</string>
+    <string name="radio_16k_frequency">16K Hz</string>
+    <string name="radio2_22K_frequency">22050 Hz</string>
+    <string name="radio2_11K_frequency">11025 Hz</string>
+    <string name="radio3_bit_width_16">PCM/16BIT</string>
+    <string name="radio3_bit_width_8">PCM/8BIT</string>
 </resources>

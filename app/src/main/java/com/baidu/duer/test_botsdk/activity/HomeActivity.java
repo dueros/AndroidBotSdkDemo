@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.baidu.duer.test_botsdk.R;
+import com.baidu.duer.test_botsdk.activity.audio.AudioDemoActivity;
 import com.baidu.duer.test_botsdk.activity.camera.CameraActivity;
 
 /**
@@ -35,6 +37,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_arrow);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         mDemoDesc = findViewById(R.id.demo_desc);
@@ -52,6 +56,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.dueros_audio_demo:
                 Log.i(TAG, "trigger audio demo");
+                Intent intentForAudio = new Intent(this, AudioDemoActivity.class);
+                startActivity(intentForAudio);
                 break;
             case R.id.dueros_camera_demo:
                 Intent intentForCamera = new Intent(this, CameraActivity.class);
@@ -66,5 +72,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }
