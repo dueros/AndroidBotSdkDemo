@@ -43,6 +43,10 @@ public class BotsdkApplication extends Application {
          * sdk会读取license文件，进行离线校验。
          * NOTE：离线校验支持版本较少（>=46),如非必要，不要走离线校验！！！
          */
+        // 在线校验示例
+        BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID,
+                random1, BotSDKUtils.sign(random1), random2, BotSDKUtils.sign(random2));
+        // 离线校验示例
         // BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, BotSDKUtils.getAppKey());
 
         registerActivityLifecycleCallbacks(new ActivityContollor());
