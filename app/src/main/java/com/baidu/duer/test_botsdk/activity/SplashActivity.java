@@ -22,7 +22,10 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, BotSDKUtils.getAppKey());
+        // BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, BotSDKUtils.getAppKey());
+        String random1 = "random1" + Math.random();
+        String random2 = "random2" + Math.random();
+        BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID, random1, BotSDKUtils.sign(random1), random2, BotSDKUtils.sign(random2));
 
         setContentView(R.layout.splash_layout);
 

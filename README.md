@@ -71,7 +71,7 @@ maven{ url 'https://dueros.baidu.com/maven/repository/maven-releases/'}
 在app/build.gradle加入依赖
 ```gradle
 implementation 'com.alibaba:fastjson:1.1.71.android'
-implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.47.1'
+implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.51.1'
 ```
 混淆配置
 ```gradle
