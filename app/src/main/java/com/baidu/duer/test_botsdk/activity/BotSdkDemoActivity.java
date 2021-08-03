@@ -81,8 +81,6 @@ public class BotSdkDemoActivity extends AppCompatActivity implements IAccountCha
     @Override
     protected void onResume() {
         super.onResume();
-        Intent intent = new Intent(BotConstants.MAIN_ACTIVITY_LAUNCH_SUCCESS);
-        LocalBroadcastManager.getInstance(this).sendBroadcastSync(intent);
     }
 
     @Override

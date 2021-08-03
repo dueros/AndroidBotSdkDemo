@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.baidu.duer.botsdk.BotSdk;
+import com.baidu.duer.botsdk.util.HeartBeatReporter;
 import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
 import com.baidu.duer.test_botsdk.botsdk.BotSDKUtils;
 import com.baidu.duer.test_botsdk.utils.BotConstants;
@@ -27,6 +28,7 @@ public class BotsdkApplication extends Application {
         super.onCreate();
         ContextUtil.setContext(this);
         // 初始化BotSDK
+        HeartBeatReporter.getInstance().setShouldUploadHeartBeatByApp(false);
         BotSdk.getInstance().init(this);
         // 打开BotSDK的Log开关，开发阶段建议打开Log开关，便于排查问题
         BotSdk.enableLog(true);

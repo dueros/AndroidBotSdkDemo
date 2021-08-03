@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class BotMessageListener implements IBotMessageListener {
 
     private List<IBotIntentCallback> callbacks = new ArrayList<>();
-    
+
     private BotMessageListener() {
     }
 
@@ -128,8 +128,6 @@ public class BotMessageListener implements IBotMessageListener {
 
     @Override
     public void onRegisterSucceed() {
-        Intent intent = new Intent(BotConstants.ACTION_REGISTER_SUCCESS);
-        LocalBroadcastManager.getInstance(ContextUtil.getContext()).sendBroadcastSync(intent);
         Log.i("BotSdk", "register success");
     }
 }

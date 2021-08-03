@@ -22,10 +22,6 @@ public class BotConstants {
     public static final String OPEN_CANLENDAR_URL = "dueros://6402fc3a-7825-3147-b52e-c25911b6d03c/entity"
             + "/timerShow/allUsedList?startDay=MONTH_START_DAY&endDay=MONTH_END_DAY&selectedDay=TODAY&requestType"
             + "=SHOW&habitChannel=duyayaapk";
-    // 连接状态广播
-    public static final String ACTION_REGISTER_SUCCESS = "com.baidu.duer.test_botsdk.register_success";
-    // 连接状态广播
-    public static final String MAIN_ACTIVITY_LAUNCH_SUCCESS = "com.baidu.duer.test_botsdk.main_launch_success";
 
     // 自定义快进意图名称
     public static final String FAST_FORWARD_INTENT = "fast_forward_intent";

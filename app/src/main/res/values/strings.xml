@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">botsdk-sample</string>
-    <string name="play_hint">依赖系统词典（卡通类）：对我说：“小度小度，我想看汪汪队”</string>
+    <string name="intent_hint"><b>云端意图需要在技能平台中配置对应意图，文档参考本仓库wiki第3节</b></string>
     <string name="fast_forward_hint">依赖自定义词典（时间单位）:对我说：“小度小度，快进一分钟/快进三十秒”</string>
     <string name="next_intent">引用系统选择意图：对我说：“小度小度，下一个/上一个”</string>
     <string name="previous_intent">引用系统播放控制意图：对我说：“小度小度，暂停/继续”</string>

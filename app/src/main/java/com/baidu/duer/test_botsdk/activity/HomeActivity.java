@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.dueros_botsdk_demo:
                 Log.i(TAG, "trigger botsdk demo and start local register");
                 // 走离线校验
-                Intent intentForBotSdk = new Intent(this, SplashActivity.class);
+                Intent intentForBotSdk = new Intent(this, BotSdkDemoActivity.class);
                 startActivity(intentForBotSdk);
                 break;
 

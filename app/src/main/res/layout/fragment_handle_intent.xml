@@ -10,9 +10,10 @@
 
 
     <TextView
-            android:text="@string/play_hint"
+            android:text="@string/intent_hint"
             android:textSize="@dimen/hint_text_size"
             android:layout_width="wrap_content"
+            android:textColor="@android:color/black"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
