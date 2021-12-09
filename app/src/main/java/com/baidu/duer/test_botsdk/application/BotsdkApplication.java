@@ -27,8 +27,9 @@ public class BotsdkApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ContextUtil.setContext(this);
-        // 初始化BotSDK
+        /** 接入益智乐园的App,需要删掉下面这一行。保证益智乐园的付费等逻辑正常执行，不知道益智乐园是啥的，不要删掉这一行 */
         HeartBeatReporter.getInstance().setShouldUploadHeartBeatByApp(false);
+        // 初始化BotSDK
         BotSdk.getInstance().init(this);
         // 打开BotSDK的Log开关，开发阶段建议打开Log开关，便于排查问题
         BotSdk.enableLog(true);
