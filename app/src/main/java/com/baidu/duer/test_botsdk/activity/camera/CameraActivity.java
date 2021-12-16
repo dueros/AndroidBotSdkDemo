@@ -25,8 +25,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.Surface;
@@ -39,6 +37,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.baidu.duer.bot.BotMessageProtocol;
 import com.baidu.duer.test_botsdk.R;
 
@@ -48,7 +49,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * 小度设备Camera demo类，实现了在小度设备拍照功能
@@ -100,12 +100,14 @@ public class CameraActivity extends AppCompatActivity {
         Log.i(TAG, "request permission result and request code:" + requestCode
                 + " and grant result:" + grantResults + " permissions:" + permissions);
         if (requestCode == 1) {
-            for (int i = 0; i< permissions.length; i++) {
-                if (permissions[i] == Manifest.permission.WRITE_EXTERNAL_STORAGE && grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permissions[i])
+                        && grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "对不起，没有写存储权限，无法正常使用相机", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (permissions[i] == Manifest.permission.CAMERA && grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                if (Manifest.permission.CAMERA.equals(permissions[i])
+                        && grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "对不起，没有相机权限，无法正常使用相机", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -140,7 +142,7 @@ public class CameraActivity extends AppCompatActivity {
                             != PackageManager.PERMISSION_GRANTED
                             || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[] {Manifest.permission.CAMERA,
+                        requestPermissions(new String[]{Manifest.permission.CAMERA,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                         findViewById(R.id.btn_control).setClickable(false);
                     } else {
@@ -228,7 +230,7 @@ public class CameraActivity extends AppCompatActivity {
         try {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[] {Manifest.permission.CAMERA,
+                requestPermissions(new String[]{Manifest.permission.CAMERA,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 return;
             }
@@ -238,25 +240,24 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    Bitmap adjustPhotoRotation(Bitmap bm, final int orientationDegree)
-    {
+    Bitmap adjustPhotoRotation(Bitmap bm, final int orientationDegree) {
         Matrix m = new Matrix();
         m.setRotate(orientationDegree, (float) bm.getWidth() / 2, (float) bm.getHeight() / 2);
 
         try {
-            Bitmap bm1 = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
-            return bm1;
-        } catch (OutOfMemoryError ex) {
+            return Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     private void writeToFile(Bitmap bitmap) {
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath()+"/temp.jpg");
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath() + "/temp.jpg");
         try {
             OutputStream os = new FileOutputStream(file);
 
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,os);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
             mPictureThumbnail.setImageBitmap(bitmap);
 
         } catch (FileNotFoundException e) {
@@ -275,7 +276,7 @@ public class CameraActivity extends AppCompatActivity {
             // 将SurfaceView的surface作为CaptureRequest.Builder的目标
             mPreviewRequestBuilder.addTarget(mSurfaceHolder.getSurface());
             // 创建CameraCaptureSession，该对象负责管理处理预览请求和拍照请求
-            mCameraDevice.createCaptureSession(Arrays.asList(mSurfaceHolder.getSurface(), mImageReader.getSurface()), new CameraCaptureSession.StateCallback(){
+            mCameraDevice.createCaptureSession(Arrays.asList(mSurfaceHolder.getSurface(), mImageReader.getSurface()), new CameraCaptureSession.StateCallback() {
                 @Override
                 public void onConfigured(CameraCaptureSession cameraCaptureSession) {
                     if (null == mCameraDevice) return;

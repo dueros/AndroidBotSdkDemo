@@ -1,13 +1,13 @@
 package com.baidu.duer.test_botsdk.botsdk;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.baidu.duer.test_botsdk.utils.BotConstants;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * BotSDK相关工具方法
@@ -16,6 +16,7 @@ public class BotSDKUtils {
 
     /**
      * 获取输入info的MD5值
+     *
      * @param s 输入字符串
      * @return
      */
@@ -37,6 +38,7 @@ public class BotSDKUtils {
 
     /**
      * byte to Hex String
+     *
      * @param md5Array md5Array
      * @return hex String
      */
@@ -55,6 +57,7 @@ public class BotSDKUtils {
 
     /**
      * 获取appkey
+     *
      * @return appKey
      */
     public static String getAppKey() {
@@ -65,6 +68,7 @@ public class BotSDKUtils {
     /**
      * 获取随机数的签名值
      * 签名算法md5（rand + appKey)
+     *
      * @param random 随机值
      * @return 签名值
      */

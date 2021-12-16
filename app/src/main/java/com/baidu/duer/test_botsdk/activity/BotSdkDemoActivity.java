@@ -1,5 +1,18 @@
 package com.baidu.duer.test_botsdk.activity;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTabHost;
+
 import com.baidu.duer.bot.directive.payload.AmountInfo;
 import com.baidu.duer.botsdk.IAccountChargeMsgListener;
 import com.baidu.duer.test_botsdk.R;
@@ -7,20 +20,6 @@ import com.baidu.duer.test_botsdk.fragment.GetDeviceInfoFragment;
 import com.baidu.duer.test_botsdk.fragment.HandleIntentFragment;
 import com.baidu.duer.test_botsdk.fragment.PaymentAndAccountFragment;
 import com.baidu.duer.test_botsdk.fragment.UiControlFragment;
-import com.baidu.duer.test_botsdk.utils.BotConstants;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTabHost;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * 这是一个BotSDK demo， demo包括如下使用案例
@@ -35,8 +34,12 @@ public class BotSdkDemoActivity extends AppCompatActivity implements IAccountCha
     private static final String TAG = "testMainActivity";
 
     private String[] tabs = new String[]{"意图处理", "自定义交互", "支付和手机号", "设备和用户信息"};
-    private Class[] mFragmentClasses = new Class[]{HandleIntentFragment.class, UiControlFragment.class,
-            PaymentAndAccountFragment.class, GetDeviceInfoFragment.class};
+    private Class<Fragment>[] mFragmentClasses = new Class[]{
+            HandleIntentFragment.class,
+            UiControlFragment.class,
+            PaymentAndAccountFragment.class,
+            GetDeviceInfoFragment.class
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,6 @@ public class BotSdkDemoActivity extends AppCompatActivity implements IAccountCha
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("BotSdk Demo");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_arrow);
         initView();
         //BotSdk.getInstance().setAccountAndChargeListener(this);
     }
@@ -57,6 +59,7 @@ public class BotSdkDemoActivity extends AppCompatActivity implements IAccountCha
 
     /**
      * tab的view对象
+     *
      * @param index 索引
      * @return view对象
      */

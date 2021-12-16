@@ -1,6 +1,14 @@
 package com.baidu.duer.test_botsdk.fragment;
 
-import java.util.HashMap;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.test_botsdk.R;
@@ -9,20 +17,13 @@ import com.baidu.duer.test_botsdk.botsdk.IBotIntentCallback;
 import com.baidu.duer.test_botsdk.utils.BotConstants;
 import com.baidu.duer.test_botsdk.utils.IntentDecodeUtil;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import java.util.HashMap;
 
 /**
  * 意图处理Demo页面，包括如下demo
  * 1，处理自定义意图
- *    （1）引用自定义词典，解析槽位数据
- *    （2）引用系统预定义词典，解析槽位信息
+ * （1）引用自定义词典，解析槽位数据
+ * （2）引用系统预定义词典，解析槽位信息
  * 2，处理系统预定义意图（确认，取消等）
  */
 public class HandleIntentFragment extends Fragment implements IBotIntentCallback {
@@ -31,6 +32,7 @@ public class HandleIntentFragment extends Fragment implements IBotIntentCallback
     private TextView mResultIntentTv;
 
     private static final String TAG = "HandleIntentFragment";
+
     public HandleIntentFragment() {
         // Required empty public constructor
     }

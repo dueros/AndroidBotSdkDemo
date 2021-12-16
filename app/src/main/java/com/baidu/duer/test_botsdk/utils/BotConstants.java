@@ -3,6 +3,10 @@ package com.baidu.duer.test_botsdk.utils;
 
 public class BotConstants {
 
+    public static final String LOG_TAG_AUDIO = "AudioRecorder";
+    public static final String LOG_TAG_CAMERA = "CameraDemo";
+    public static final String LOG_TAG_BOTSDK = "BotSDKDemo";
+
     /**
      * BotID和签名key ,可以在自己的技能控制台看到相关信息：https://dueros.baidu.com/dbp/main/console
      */
@@ -32,4 +36,19 @@ public class BotConstants {
     // 用户自定义词典值
     public static final String TIME_UNIT_SECOND = "second";
     public static final String TIME_UNIT_MINUTE = "minute";
+
+
+    public static class Frequency {
+        public static final int F16K = 16000;
+        public static final int F22K = 22050;
+        public static final int F11K = 11025;
+    }
+
+    public static class UiControlType {
+        public static final String LINK = "link";
+        public static final String SELECT = "select";
+        public static final String INPUT = "input";
+        public static final String BUTTON = "button";
+    }
+
 }

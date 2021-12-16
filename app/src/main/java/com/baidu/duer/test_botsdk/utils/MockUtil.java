@@ -7,6 +7,7 @@ public class MockUtil {
 
     /**
      * 产生一个固定的金额信息
+     *
      * @return amountinfo
      */
     public static AmountInfo mockAmountInfo() {
@@ -18,6 +19,7 @@ public class MockUtil {
 
     /**
      * 构造卖家订单信息
+     *
      * @return
      */
     public static SellerOrderStructure mockSellerOlrderStructure() {
@@ -32,6 +34,7 @@ public class MockUtil {
 
     /**
      * 构造手机号一键授权的url
+     *
      * @return
      */
     public static String mockGrantPhoneNumberUrl() {

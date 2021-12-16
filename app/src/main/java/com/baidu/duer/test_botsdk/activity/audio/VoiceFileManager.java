@@ -1,4 +1,3 @@
-
 package com.baidu.duer.test_botsdk.activity.audio;
 
 import android.os.Environment;
@@ -11,6 +10,9 @@ import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ *
+ */
 public class VoiceFileManager {
     private static final int RECORDER_BPP = 16;
     private static final String TAG = "VoiceFileManager";
@@ -36,14 +38,12 @@ public class VoiceFileManager {
     public String startOpenFile() {
         if (Environment.MEDIA_MOUNTED.equals(Environment
                 .getExternalStorageState())) {
-           
-			// 鍒涘缓涓�釜鏂囦欢澶瑰璞★紝璧嬪�涓哄閮ㄥ瓨鍌ㄥ櫒鐨勭洰褰�         
-        	File sdcardDir = Environment.getExternalStorageDirectory();
-            // 寰楀埌涓�釜璺緞锛屽唴瀹规槸sdcard鐨勬枃浠跺す璺緞鍜屽悕瀛�           
+
+            File sdcardDir = Environment.getExternalStorageDirectory();
+
             String path = sdcardDir.getPath() + "/AudioRecorder";
             File file = new File(path);
             if (!file.exists()) {
-                // 鑻ヤ笉瀛樺湪锛屽垱寤虹洰褰曪紝鍙互鍦ㄥ簲鐢ㄥ惎鍔ㄧ殑鏃跺�鍒涘缓
                 file.mkdirs();
             }
             Date date = new Date();
@@ -100,7 +100,6 @@ public class VoiceFileManager {
     }
 
     private void WriteWaveFileHeader(RandomAccessFile file) throws IOException {
-        // 16K銆�6bit銆佸崟澹伴亾
         /* RIFF header */
         file.writeBytes("RIFF"); // riff id
         file.writeInt(0); // riff chunk size *PLACEHOLDER*

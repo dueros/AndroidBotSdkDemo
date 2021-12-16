@@ -1,7 +1,16 @@
 package com.baidu.duer.test_botsdk.fragment;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.baidu.duer.bot.BotMessageProtocol;
 import com.baidu.duer.bot.directive.payload.JsonUtil;
@@ -14,23 +23,15 @@ import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
 import com.baidu.duer.test_botsdk.botsdk.IBotIntentCallback;
 import com.baidu.duer.test_botsdk.utils.DeviceInfoUtil;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 自定义交互组件Demo页面，包括如下demo
  * 1，处理自定义交互组件
  * 2，处理系统预定义交互组件，比如选择第几个，输入XX等
  */
-public class GetDeviceInfoFragment extends Fragment implements View.OnClickListener,IBotIntentCallback {
+public class GetDeviceInfoFragment extends Fragment implements View.OnClickListener, IBotIntentCallback {
 
 
     private TextView mResultIntentTv;
@@ -45,7 +46,10 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
     private Button mRequestCameraInfo;
     private Button mRegisteGestureList;
 
+    private Button clearLogBtn;
+
     private static final String TAG = "HandleIntentFragment";
+
     public GetDeviceInfoFragment() {
         // Required empty public constructor
     }
@@ -86,6 +90,9 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
         mRequestCameraInfo.setOnClickListener(this);
         mRegisteGestureList = view.findViewById(R.id.register_gesture_list);
         mRegisteGestureList.setOnClickListener(this);
+
+        clearLogBtn = view.findViewById(R.id.clear_log_btn);
+        clearLogBtn.setOnClickListener(this);
     }
 
 
@@ -108,7 +115,7 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.read_device_serial_number:
-                Toast.makeText(getContext(),"请参考Google原生方案获取设备id，设备sn不再开放给普通app读取", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "请参考Google原生方案获取设备id，设备sn不再开放给普通app读取", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.get_userid:
                 mResultIntentTv.setText(DeviceInfoUtil.getUserInfo(DeviceInfoUtil.PATH_USER_ID));
@@ -159,7 +166,9 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
                 BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_GESTURE_REGISTER,
                         JsonUtil.toJson(gestureRegisterParams));
                 break;
-
+            case R.id.clear_log_btn:
+                mResultIntentTv.setText(R.string.result_intent);
+                break;
         }
     }
 

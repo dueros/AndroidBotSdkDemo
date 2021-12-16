@@ -1,12 +1,12 @@
 package com.baidu.duer.test_botsdk.utils;
 
-import java.util.List;
-
-import com.baidu.duer.botsdk.BotIntent;
-
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
+import com.baidu.duer.botsdk.BotIntent;
+
+import java.util.List;
 
 /**
  * 解析意图名称和槽位信息的工具类
@@ -14,8 +14,10 @@ import android.util.Log;
 public class IntentDecodeUtil {
 
     private static final String TAG = "IntentDecodeUtil";
+
     /**
      * 解析拖动进度意图的槽位信息，返回拖动的秒数
+     *
      * @param slots 槽位信息
      * @return 快进总秒数
      */
@@ -49,7 +51,7 @@ public class IntentDecodeUtil {
     }
 
     private static String getSlotNumberValueBySlotName(@NonNull final List<BotIntent.Slot> slots,
-                                                    @NonNull final String slotName) {
+                                                       @NonNull final String slotName) {
         for (BotIntent.Slot slot : slots) {
             if (slot.name.equals(slotName)) {
                 return slot.value;

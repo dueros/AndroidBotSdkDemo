@@ -1,12 +1,12 @@
 package com.baidu.duer.test_botsdk.utils;
 
-import java.util.Objects;
-
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+
+import java.util.Objects;
 
 /**
  * 获取用户和设备信息的工具类
@@ -25,6 +25,7 @@ public class DeviceInfoUtil {
 
     /**
      * 读取UserInfoProvider
+     *
      * @param infoPath provider path
      * @return value
      */
@@ -32,7 +33,7 @@ public class DeviceInfoUtil {
         String result = null;
         try {
             final Cursor cursor = ContextUtil.getContext().getContentResolver()
-                    .query(Uri.parse(DeviceInfoAuthorize + infoPath), null, null, null, null );
+                    .query(Uri.parse(DeviceInfoAuthorize + infoPath), null, null, null, null);
 
             if (cursor != null && cursor.getColumnNames() != null && cursor.moveToFirst()) {
                 String[] columns = cursor.getColumnNames();
