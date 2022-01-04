@@ -51,6 +51,11 @@ dueros://{{botId}}/path?openbot=true&request={\"query\":{\"type\":\"TEXT\",\"ori
 
 2. 度秘云端收到LinkClicked事件，下发一个Open指令打开应用[协议地址（百度内网可访问）](http://icode.baidu.com/repos/baidu/duer/open-platform-api-doc/blob/master:dueros-conversational-service/device-interface/bot-app-sdk-private.md),指令中会带上packageName和（1）中加粗的action(**com.android.action.TEST_FOR_OEPN**) + url(**test://test_for_open_bot?query1=1&query2=2**) 两个参数.
 3. 小度设备收到并处理Open指令，拉起应用。拉起应用的intent获取逻辑如下：
+
+Activity索引规则：<b>如果action字段为空，会搜索apk内：action = andriod.intent.action.MAIN, cagetory=android.intent.category.LAUNCHER 的activity，也就是技能启动页。
+如果action字段不为空，会搜索apk内 action = 业务方预设的action， category=android.intent.category.DEFAULT 的activity</b>。所以，请千万注意看AndroidManifest.xml中activity的intent-filter配置，是否为目标Activity指定了正确的action和category.
+
+Activity索引代码如下：
 ```java
         PackageManager packageManager = context.getPackageManager();
         Intent intent;
