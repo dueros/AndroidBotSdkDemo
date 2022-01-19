@@ -17,18 +17,38 @@
 
     <string name="audio_format">Format</string>
 
+    <!-- 声道选择 -->
     <string name="radio_double_voice_channel">双声道</string>
     <string name="radio_single_voice_channel">单声道</string>
-    <string name="radio_16k_frequency">16K Hz</string>
-    <string name="radio2_22K_frequency">22050 Hz</string>
+
+    <!-- 频率选择 -->
+    <string name="radio2_16k_frequency">16K Hz</string>
+    <string name="radio2_22K_frequency">22K Hz</string>
     <string name="radio2_11K_frequency">11025 Hz</string>
+    <string name="radio2_64K_frequency">64K Hz\n(原始音频)</string>
+
+    <!-- 位宽选择 -->
     <string name="radio3_bit_width_16">PCM/16BIT</string>
     <string name="radio3_bit_width_8">PCM/8BIT</string>
+
+    <!-- 音频信号源选择 -->
+    <string name="radio4_source_default">默认音源</string>
+    <string name="radio4_source_original">原始音源</string>
 
 
     <string name="audio_channel_select">声道选择</string>
     <string name="frequency_select">频率选择</string>
     <string name="bit_width_select">位宽选择</string>
+    <string name="audio_source_select">音频选择</string>
+
+    <string name="device_mic_num">当前设备的麦克风数量: %1$s</string>
+
+    <string name="audio_original_desc">注：使用原始音频录制时，请将AudioRecorder配置为：双声道，64KHz采样率录制。\n
+        请开发者自行选择数据处理方式，文件中的数据格式是按声道顺序为一组依次排列：\n
+        [01234567],[01234567], …\n
+        一般前面0到5是mic数据，若mic数量不够将以空数据填充，6,7是参考数据。\n
+        处理原始音频的Wav文件时，注意44byte文件头偏移。\n
+        具体不同机型的mic数量，通过读取属性：persist.audio.mic_num得到。</string>
 
     <string name="payment_desc_1">对于需要当前设备登录用户的手机号的场景，App可以通过上报事件的方式向DuerOS发起请求，
         DuerOS会处理上报请求，下发用户手机号</string>

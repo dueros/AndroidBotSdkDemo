@@ -6,7 +6,6 @@ import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
-import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.baidu.duer.test_botsdk.R;
 import com.baidu.duer.test_botsdk.utils.BotConstants;
+import com.baidu.duer.test_botsdk.utils.DeviceInfoUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,16 +43,25 @@ public class AudioDemoActivity extends AppCompatActivity implements View.OnClick
     private Button mStartRecordDemo;
     private TextView mRecordDuration;
     private Button mPlayRecord;
-    private RadioGroup mVoiceSelectorContainer, mFrequencySelectorContainer, mBitWidthSelectorContainer;
+    private RadioGroup mVoiceSelectorContainer, mFrequencySelectorContainer,
+            mBitWidthSelectorContainer, mAudioSourceSelectorContainer;
     private RadioButton mRadioDoubleChannel, mRadioSingleChannel,
             mFrequency16K, mFrequency22K, mFrequency11K,
-            mBitWidth16, mBitWidth8;
+            mBitWidth16, mBitWidth8,
+            mAudioSourceDefault, mAudioSourceOriginal;
+    private TextView mDescription;
 
     private final Handler mMainHandler = new Handler();
 
     private static int channelConfiguration = AudioFormat.CHANNEL_CONFIGURATION_MONO;
     private static int EncodingBitRate = AudioFormat.ENCODING_PCM_16BIT;
-    // 逻辑控制变量
+
+    /**
+     * 音频源
+     */
+    private static int audioSource = BotConstants.AudioSource.DEFAULT;
+
+
     private boolean isRecording = false;
     private long mStartRecordTimestamp = 0;
     private boolean isRecordPlaying = false;
@@ -144,6 +152,7 @@ public class AudioDemoActivity extends AppCompatActivity implements View.OnClick
                     Log.i(BotConstants.LOG_TAG_AUDIO, "Stop Recording");
                     stopRecording();
                     Toast.makeText(this, "文件已保存到目录：" + filePath, Toast.LENGTH_LONG).show();
+                    Log.i(BotConstants.LOG_TAG_AUDIO, filePath);
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                             && checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
@@ -188,17 +197,27 @@ public class AudioDemoActivity extends AppCompatActivity implements View.OnClick
         mVoiceSelectorContainer = findViewById(R.id.voice_channel_selector_container);
         mFrequencySelectorContainer = findViewById(R.id.frequency_selector_container);
         mBitWidthSelectorContainer = findViewById(R.id.bit_width_selector_container);
+        mAudioSourceSelectorContainer = findViewById(R.id.audio_source_selector_container);
+
         mRadioDoubleChannel = findViewById(R.id.radio_double_channel);
         mRadioSingleChannel = findViewById(R.id.radio_single_channel);
+
         mFrequency16K = findViewById(R.id.frequency_16k);
         mFrequency22K = findViewById(R.id.frequency_22k);
         mFrequency11K = findViewById(R.id.frequency_11k);
+
         mBitWidth16 = findViewById(R.id.bit_width_16);
         mBitWidth8 = findViewById(R.id.bit_width_8);
+
+        mAudioSourceDefault = findViewById(R.id.audio_source_default);
+        mAudioSourceOriginal = findViewById(R.id.audio_source_original);
 
         mVoiceSelectorContainer.setOnCheckedChangeListener(mChangeRadio1);
         mFrequencySelectorContainer.setOnCheckedChangeListener(mChangeRadio2);
         mBitWidthSelectorContainer.setOnCheckedChangeListener(mChangeRadio3);
+        mAudioSourceSelectorContainer.setOnCheckedChangeListener(mChangeRadio4);
+
+        mDescription = findViewById(R.id.description);
     }
 
 
@@ -261,7 +280,7 @@ public class AudioDemoActivity extends AppCompatActivity implements View.OnClick
         recBufSize = AudioRecord.getMinBufferSize(frequency,
                 channelConfiguration, EncodingBitRate);
 
-        audioRecord = new AudioRecord(MediaRecorder.AudioSource.VOICE_COMMUNICATION, frequency,
+        audioRecord = new AudioRecord(audioSource, frequency,
                 channelConfiguration, EncodingBitRate, recBufSize);
     }
 
@@ -372,6 +391,41 @@ public class AudioDemoActivity extends AppCompatActivity implements View.OnClick
             }
         }
     };
+
+    RadioGroup.OnCheckedChangeListener mChangeRadio4 = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if (checkedId == mAudioSourceDefault.getId()) {
+                audioSource = BotConstants.AudioSource.DEFAULT;
+                findViewById(R.id.channel_section).setVisibility(View.VISIBLE);
+                findViewById(R.id.frequency_section).setVisibility(View.VISIBLE);
+                findViewById(R.id.bit_width_section).setVisibility(View.VISIBLE);
+                mDescription.setVisibility(View.GONE);
+
+                // 还原为默认配置
+                mRadioDoubleChannel.performClick();
+                mFrequency16K.performClick();
+                mBitWidth16.performClick();
+            } else if (checkedId == mAudioSourceOriginal.getId()) {
+                audioSource = BotConstants.AudioSource.ORIGINAL;
+                findViewById(R.id.channel_section).setVisibility(View.GONE);
+                findViewById(R.id.frequency_section).setVisibility(View.GONE);
+                findViewById(R.id.bit_width_section).setVisibility(View.GONE);
+                mDescription.setVisibility(View.VISIBLE);
+
+                String micNumDesc = String.format(
+                        getString(R.string.device_mic_num), DeviceInfoUtil.getMicNumber());
+                String audioOriginalDesc = getString(R.string.audio_original_desc);
+                mDescription.setText(micNumDesc + "\n\n" + audioOriginalDesc);
+
+                //原始音频录制特殊设置
+                channelConfiguration = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
+                frequency = BotConstants.Frequency.F64K;
+                EncodingBitRate = AudioFormat.ENCODING_PCM_16BIT;
+            }
+        }
+    };
+
 
     @Override
     protected void onDestroy() {

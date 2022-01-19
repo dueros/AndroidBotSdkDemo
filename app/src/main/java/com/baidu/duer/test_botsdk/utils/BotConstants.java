@@ -1,6 +1,8 @@
 package com.baidu.duer.test_botsdk.utils;
 
 
+import android.media.MediaRecorder;
+
 public class BotConstants {
 
     public static final String LOG_TAG_AUDIO = "AudioRecorder";
@@ -42,6 +44,7 @@ public class BotConstants {
         public static final int F16K = 16000;
         public static final int F22K = 22050;
         public static final int F11K = 11025;
+        public static final int F64K = 64000;
     }
 
     public static class UiControlType {
@@ -49,6 +52,23 @@ public class BotConstants {
         public static final String SELECT = "select";
         public static final String INPUT = "input";
         public static final String BUTTON = "button";
+    }
+
+    /**
+     * 音频源
+     */
+    public static class AudioSource {
+        /**
+         * 默认的音频信号。通过默认音频源获取的采集信号
+         */
+        public static final int DEFAULT = MediaRecorder.AudioSource.VOICE_COMMUNICATION;
+
+        /**
+         * 原始音频信号。小度正式向开发者开放原始音频录制能力。
+         * 通过此音频源可获取麦克风采集的原始音频数据。
+         * 开发者可自行选择算法处理信号以满足需求。
+         */
+        public static final int ORIGINAL = 1007;
     }
 
 }

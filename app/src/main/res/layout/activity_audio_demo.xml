@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dueros_record_demo">
 
@@ -53,9 +53,48 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!-- 音频通道选择 -->
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="@string/audio_source_select"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <RadioGroup
+                    android:id="@+id/audio_source_selector_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/audio_source_default"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/radio4_source_default" />
+
+                    <RadioButton
+                        android:id="@+id/audio_source_original"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/radio4_source_original" />
+                </RadioGroup>
+            </LinearLayout>
+
             <!-- 声道选择 -->
             <LinearLayout
-                android:layout_width="200dp"
+                android:id="@+id/channel_section"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
@@ -93,7 +132,8 @@
 
             <!-- 频率选择 -->
             <LinearLayout
-                android:layout_width="200dp"
+                android:id="@+id/frequency_section"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
@@ -119,7 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="@string/radio_16k_frequency" />
+                        android:text="@string/radio2_16k_frequency" />
 
                     <RadioButton
                         android:id="@+id/frequency_22k"
@@ -132,12 +172,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/radio2_11K_frequency" />
+
                 </RadioGroup>
             </LinearLayout>
 
             <!-- 位宽选择 -->
             <LinearLayout
-                android:layout_width="200dp"
+                android:id="@+id/bit_width_section"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
@@ -173,8 +215,19 @@
                         android:text="@string/radio3_bit_width_8" />
                 </RadioGroup>
             </LinearLayout>
+
+
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/record_config_container"
+        app:layout_constraintLeft_toRightOf="@id/record_config_container"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

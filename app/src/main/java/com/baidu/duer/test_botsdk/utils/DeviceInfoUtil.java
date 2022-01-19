@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.lang.reflect.Method;
 import java.util.Objects;
 
 /**
@@ -56,5 +57,21 @@ public class DeviceInfoUtil {
             result = e.getMessage();
         }
         return result;
+    }
+
+    /**
+     * 获取当前设备的麦克风数量
+     * @return 麦克风数量
+     */
+    public static String getMicNumber() {
+        try {
+            Class<?> classType = Class.forName("android.os.SystemProperties");
+            Method getMethod = classType.getDeclaredMethod("get", String.class);
+            return (String) getMethod.invoke(classType, new Object[]{"persist.audio.mic_num"});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "0";
     }
 }
