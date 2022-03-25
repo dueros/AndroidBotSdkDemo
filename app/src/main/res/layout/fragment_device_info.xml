@@ -79,15 +79,45 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/get_bduss" />
 
-            <Button
-                android:id="@+id/read_device_serial_number"
+            <TextView
+                android:id="@+id/read_device_unique_id_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="读取serial number"
+                android:text="@string/deviceinfo_unique_id_desc"
                 android:textSize="@dimen/hint_text_size"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/read_device_serial_number_title" />
+
+            <Button
+                android:id="@+id/read_device_unique_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="读取设备唯一ID"
+                android:textSize="@dimen/hint_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/read_device_unique_id_desc" />
+
+            <TextView
+                android:id="@+id/read_device_resettable_unique_id_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/deviceinfo_resettable_unique_id_desc"
+                android:textSize="@dimen/hint_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/read_device_unique_id" />
+
+            <Button
+                android:id="@+id/read_device_resettable_unique_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="读取设备唯一ID(重置可变)"
+                android:textSize="@dimen/hint_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/read_device_resettable_unique_id_desc" />
 
             <TextView
                 android:id="@+id/report_link_clicked_event_title"
@@ -97,7 +127,7 @@
                 android:text="@string/deviceinfo_desc_3"
                 android:textSize="@dimen/hint_text_size"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/read_device_serial_number" />
+                app:layout_constraintTop_toBottomOf="@id/read_device_resettable_unique_id" />
 
             <Button
                 android:id="@+id/report_link_clicked_event"
@@ -110,6 +140,26 @@
                 app:layout_constraintTop_toBottomOf="@id/report_link_clicked_event_title" />
 
             <TextView
+                android:id="@+id/report_resource_progress_event_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/deviceinfo_report_resource_progress_event_desc"
+                android:textSize="@dimen/hint_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/report_link_clicked_event" />
+
+            <Button
+                android:id="@+id/report_resource_progress_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="上报资源消费事件"
+                android:textSize="@dimen/hint_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/report_resource_progress_event_desc" />
+
+            <TextView
                 android:id="@+id/update_modify_wakeup_state_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,7 +167,7 @@
                 android:text="更新是否允许唤醒状态"
                 android:textSize="@dimen/hint_text_size"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/report_link_clicked_event" />
+                app:layout_constraintTop_toBottomOf="@id/report_resource_progress_event" />
 
             <Button
                 android:id="@+id/update_modify_wakeup_state"

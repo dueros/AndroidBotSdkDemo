@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.baidu.duer.test_botsdk.R;
 import com.baidu.duer.test_botsdk.activity.audio.AudioDemoActivity;
 import com.baidu.duer.test_botsdk.activity.camera.CameraActivity;
+import com.baidu.duer.test_botsdk.utils.BotConstants;
 
 /**
  * 背景：因为小度设备软硬件跟Android原生设备有差异（例如只有一个前置Camera，只开放MUSIC的audio通路给开发者）
@@ -48,6 +49,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mAudioDemo.setOnClickListener(this);
         mBotSdkDemo = findViewById(R.id.dueros_botsdk_demo);
         mBotSdkDemo.setOnClickListener(this);
+        if (getIntent() != null) {
+            /** BotSdk拉起的Activity，Sdk会在拉起intent中填充token字段 */
+            BotConstants.token = getIntent().getStringExtra("directiveToken");
+        }
     }
 
     @Override

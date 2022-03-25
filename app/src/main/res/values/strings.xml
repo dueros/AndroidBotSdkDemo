@@ -57,11 +57,21 @@
     <string name="payment_desc_3">技能外售卖是指，App可以在百度侧注册商品，参加百度的会场类（如双十一）营销活动。
         用户是在百度营销会场购买，不需要在设备上打开技能.技能外购买是被动处理发货指令,无法主动触发</string>
 
-    <string name="deviceinfo_desc_1">设备可以通过UserInfoProvider对外输出：用户登录信息，
+    <string name="deviceinfo_desc_1">设备可以通过UserInfoProvider对外输出：用户登录信息，\n
         userid，bduss，clientid。以上这些信息经过签名验证，加入到设备白名单就可以读取到想要的字段,
         所以此demo仅为用法示例，读取不到任何信息</string>
-    <string name="deviceinfo_desc_2">读取设备序列号，序列号在小度体系中可以保证唯一,序列号不依赖授权</string>
-    <string name="deviceinfo_desc_3">上报linkclicked事件。三方app可以通过上报事件给DuerOS主动请求
+    <string name="deviceinfo_desc_2">读取设备唯一ID：</string>
+    <string name="deviceinfo_desc_3">上报linkclicked事件。三方app可以通过上报事件给DuerOS主动请求\n
         DuerOS执行某些动作，如下示例，通过事件上报请求DuerOS在用户习惯中增加一个习惯日程</string>
     <string name="deviceinfo_desc_4">手势能力，手势能力是一种新的交互方式，用户可以通过对着摄像头做手势完成交互</string>
+
+    <string name="deviceinfo_unique_id_desc">读取设备不可变ID\n
+        设备不可变ID在小度体系中可以保证唯一，需要申请添加到唯一ID白名单内方可获取。</string>
+    <string name="deviceinfo_resettable_unique_id_desc">读取设备不可变ID(重置可变)\n
+        该ID在设备重置前可保证唯一，不依赖授权。设备重置后会重新生成。</string>
+
+    <string name="deviceinfo_report_resource_progress_event_desc">上报资源消费事件：\n
+        开发者可将应用内的视频、文章等类型资源消费数据，通过这个统一接口上报到小度云端，\n
+        小度可根据消费数据进一步优化资源推荐模型，提升内容消费效果以及用户体验。\n
+        为避免复杂用户场景下上报频率不可控，导致产生的事件过多。在此强烈建议开发者采取定时上报的方案，上报间隔30s。</string>
 </resources>

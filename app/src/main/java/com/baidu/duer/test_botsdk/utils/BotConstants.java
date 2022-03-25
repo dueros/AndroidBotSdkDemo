@@ -2,6 +2,7 @@ package com.baidu.duer.test_botsdk.utils;
 
 
 import android.media.MediaRecorder;
+import androidx.annotation.Nullable;
 
 public class BotConstants {
 
@@ -70,5 +71,9 @@ public class BotConstants {
          */
         public static final int ORIGINAL = 1007;
     }
+
+    /** 打开App的token字段 */
+    @Nullable
+    public static String token;
 
 }
