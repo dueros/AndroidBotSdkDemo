@@ -164,8 +164,8 @@ public class UiControlFragment extends Fragment implements IBotIntentCallback, V
         /**
          * 增加未识别话术兜底透传机制，用户说到了未识别的预定义话术，可以把用户query原文透传到App内，App可以根据用户query结果做逻辑处理
          * <b>建议自己有兜底语义理解需求的客户设置此开关为false，自身没有语义理解服务的客户请不要调用此代码！</b>
+         * payload.setEnableGeneralUtterances(false);
          */
-        payload.setEnableGeneralUtterances(false);
 
         // 无参数自定义话术示例。识别用户要点击哪个按钮
         String[] loginWords = {"登录", "点击登录"};
