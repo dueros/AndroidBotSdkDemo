@@ -9,6 +9,10 @@
 
 ## 发布历史
 
+### 1.63.0
+- 变更内容
+  * AndroidMainest增加queries标签，解决apk targetSdk版本>=30的时候，botsdk查询宿主服务失败的问题。
+
 ### 1.60.2
 - 变更内容
   * 增加获取设备唯一id接口

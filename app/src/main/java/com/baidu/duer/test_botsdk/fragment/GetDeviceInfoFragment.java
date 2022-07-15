@@ -181,7 +181,8 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
                 /** 资源描述信息 */
                 payload.resourceDesc = "测试资源描述";
                 payload.token = BotConstants.token;
-                BotSdk.getInstance().reportResourceProgressElapsed(payload);
+                // BotSdk.getInstance().reportResourceProgressElapsed(payload);
+
                 break;
             case R.id.update_modify_wakeup_state:
                 BotSdk.getInstance().triggerDuerOSCapacity(BotMessageProtocol.DuerOSCapacity.AI_DUER_SHOW_DISABLE_WAKEUP, null);
