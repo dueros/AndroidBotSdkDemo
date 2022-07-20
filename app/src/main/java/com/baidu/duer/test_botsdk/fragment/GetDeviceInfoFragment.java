@@ -15,11 +15,11 @@ import androidx.fragment.app.Fragment;
 import com.baidu.duer.bot.BotMessageProtocol;
 import com.baidu.duer.bot.directive.payload.JsonUtil;
 import com.baidu.duer.bot.event.payload.LinkClickedEventPayload;
-import com.baidu.duer.bot.event.payload.ResourceProgressElapsedEventPayload;
 import com.baidu.duer.bot.util.Constants;
 import com.baidu.duer.botsdk.BotIntent;
 import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.botsdk.util.RequestBotSdkUtil;
+import com.baidu.duer.botsdk.util.ResourceProgressElapsedEventPayload;
 import com.baidu.duer.test_botsdk.R;
 import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
 import com.baidu.duer.test_botsdk.botsdk.IBotIntentCallback;
@@ -181,7 +181,16 @@ public class GetDeviceInfoFragment extends Fragment implements View.OnClickListe
                 /** 资源描述信息 */
                 payload.resourceDesc = "测试资源描述";
                 payload.token = BotConstants.token;
-                // BotSdk.getInstance().reportResourceProgressElapsed(payload);
+                /** 开始播放（包含start，resume）*/
+                // payload.progressType = ResourceProgressElapsedEventPayload.ProgressType.PlaybackStarted.toString();
+                /** 播放进度上报, SDK中会做频控，上报间隔>=30s  */
+                payload.progressType = ResourceProgressElapsedEventPayload.ProgressType.ProgressElapsed.toString();
+                /** 停止播放（包含 stop, pause, <b>不包含FINISH</b>）*/
+                // payload.progressType = ResourceProgressElapsedEventPayload.ProgressType.PlaybackStop.toString();
+                /** 完播, 仅仅代表FINISH */
+                // payload.progressType = ResourceProgressElapsedEventPayload.ProgressType.PlaybackFinished.toString();
+                payload.statisticData = BotConstants.statisticData;
+                BotSdk.getInstance().reportResourceProgressEvent(payload);
 
                 break;
             case R.id.update_modify_wakeup_state:

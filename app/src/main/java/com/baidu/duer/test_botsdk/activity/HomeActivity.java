@@ -1,5 +1,12 @@
 package com.baidu.duer.test_botsdk.activity;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baidu.duer.bot.BotMessageProtocol;
+import com.baidu.duer.test_botsdk.R;
+import com.baidu.duer.test_botsdk.activity.audio.AudioDemoActivity;
+import com.baidu.duer.test_botsdk.activity.camera.CameraActivity;
+import com.baidu.duer.test_botsdk.utils.BotConstants;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -8,13 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.baidu.duer.test_botsdk.R;
-import com.baidu.duer.test_botsdk.activity.audio.AudioDemoActivity;
-import com.baidu.duer.test_botsdk.activity.camera.CameraActivity;
-import com.baidu.duer.test_botsdk.utils.BotConstants;
 
 /**
  * 背景：因为小度设备软硬件跟Android原生设备有差异（例如只有一个前置Camera，只开放MUSIC的audio通路给开发者）
@@ -52,6 +53,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         if (getIntent() != null) {
             /** BotSdk拉起的Activity，Sdk会在拉起intent中填充token字段 */
             BotConstants.token = getIntent().getStringExtra("directiveToken");
+            String appInfoJson = getIntent().getStringExtra(BotMessageProtocol.KEY_APPINFO_JSON);
+            try {
+                JSONObject jsonObject = JSONObject.parseObject(appInfoJson);
+                BotConstants.statisticData = jsonObject.getString(BotMessageProtocol.KEY_STATISTIC_DATA);
+            } catch (Exception e) {
+                Log.e(TAG, "encounter exception when parse jsonObject ", e);
+            }
+            Log.i(TAG, "token:" + BotConstants.token + " and statistic data:" + BotConstants.statisticData);
         }
     }
 

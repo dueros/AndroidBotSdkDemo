@@ -76,4 +76,8 @@ public class BotConstants {
     @Nullable
     public static String token;
 
+    /** 打开App的statistic字段。 正式工程中，可以创建一个单例holder存放 */
+    @Nullable
+    public static String statisticData;
+
 }

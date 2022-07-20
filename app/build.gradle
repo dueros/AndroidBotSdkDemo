@@ -51,7 +51,7 @@ dependencies {
 
     // Baidu
     // implementation "com.baidu.yunapp:operationsdk-cloud:1.0.5"
-    implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.63.0'
+    implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.63.1'
 
     // 3rd Party
     implementation "com.alibaba:fastjson:${FASTJSON_VERSION}"
