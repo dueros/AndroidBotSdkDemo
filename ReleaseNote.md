@@ -9,9 +9,17 @@
 
 ## 发布历史
 
+### 1.63.1
+- 变更内容
+  * 资源消费事件上报增加两个字段：progressType，statisticData
+- 系统版本限制
+  Launcher（com.baidu.launcher）版本大于等于1.62.0.0
+- Demo提交
+  https://github.com/dueros/AndroidBotSdkDemo/commit/71e5452dd594251ddd107d9eb69346aa5840a481
+
 ### 1.63.0
 - 变更内容
-  * AndroidMainest增加queries标签，解决apk targetSdk版本>=30的时候，botsdk查询宿主服务失败的问题。
+  * AndroidMainest增加queries标签，解决apk targetSdk版本>=30的时候，botsdk查询宿主服务失败的问题。如果编译提示找不到queries标签，可以升级gradle build tool解决.
 
 ### 1.60.2
 - 变更内容
