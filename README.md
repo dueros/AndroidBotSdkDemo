@@ -64,6 +64,7 @@
 在项目build.gradle中新增 maven库依赖
 ```gradle
 maven{ url 'https://dueros.baidu.com/maven/repository/maven-releases/'}
+maven{ url 'http://maven.baidu-int.com/nexus/content/repositories/Baidu_Local' }
 ```
 
 在app/build.gradle加入依赖
