@@ -1,0 +1,301 @@
+# 技能外售卖接入文档——android app、h5技能（对外）
+“技能外售卖”指的不用打开app，用户就可以在小度的其他销售渠道售卖app内的商品，例如小度app、小度在家设备端、双十一等运营活动。用户购买后打开商品对应的app后，app识别设备百度帐号下的售卖信息，并完成发货，用户即可享受商品权益。
+该文档只用于技术上的接入说明，产品需求需要合作方产品经理与百度产品经理共同对齐。
+## 方案
+* 用户在实际购买过程中未打开技能（或应用），因此无法直接向用户发货权益。
+* 此方案以百度账号作为中转，用户购买完成后，相应权益绑定到百度账号下。
+* 用户购买完成后，当下一次打开合作方应用时，DuerOS检测到当前百度账号有待发货权益，则下发发货指令，由合作方应用向具体用户发货相应权益。
+* 若用户在小度app购买权益时，当前绑定的设备已经打开了合作方应用，则DuerOS会立即下发发货指令，而不必等下一次打开应用。
+
+
+
+## 注册技能内的商品
+文档见：https://dueros.baidu.com/didp/doc/dueros-bot-platform/dbp-pay/product-management_markdown
+
+
+
+## 下单
+用户把已经注册的商品id、相应的物料(展示图片等)委托给产品经理商品后，商品的下单及支付流程由DuerOS代理，合作方只需要在订单支付完成后给用户发货相应权益，并在订单发货完成后回调DuerOS接口关闭订单即可。
+## 发货
+我们有两种发货方式
+1. 用户付完款后，在应用打开时开发者根据获取到的apiAccessToken请求未发货订单接口，返回未发货订单，开发者根据订单返回的信息做发货操作。
+2. 用户付完款后，如果已经在应用中，应用会收到发货指令onHandleIntent，开发者根据指令中的baiduOrderReferenceId查询发货详情，然后做发货操作
+
+建议：发货这类交易类接口由于涉及到金钱，用户又比较关注。请求最好是由服务端发起，并且中间过程每一步最好都打印Log，这样即使出了问题也有据可查，便于快速定位问题。
+
+### 拉取未发货订单接口
+
+该接口接收apiAccessToken参数，用户请求时将参数放在header中，拼上前缀前缀“Bearer ”，&lt;font color=red&gt;注意，“Bearer ”后有个空格&lt;/font&gt;
+
+**APIAccessToken获取方式**
+Activity被拉起后，可以在被拉起的页面，通过getIntent().getStringExtra(&quot;apiAccesstoken&quot;) 
+这个方法读取APIAccessToken
+
+&lt;font color=red&gt;注意：由于获取apiAccessToken依赖端版本，在sp34版本后可用，19年底发版，基本不需要担心版本的问题&lt;/font&gt;
+
+#### 请求地址
+GET https://dueros.baidu.com/dbp/outsideOrder/getunshippingorder
+
+#### request参数
+|字段名|类型|是否必须|描述|
+|---|---|---|---|
+|authorization|string|是|应用打开时获取到的apiAccessToken，拼上前缀”Bearer “后的字符串，&lt;font color=red&gt;需放在header头中请求&lt;/font&gt;|
+|apkVersion|string|否|技能版本号，虽然不是强制要求，但请尽量带上版本号，有助于追查问题。&lt;font color=red&gt;无需放header头中，正常参数带上即可&lt;/font&gt;|
+
+php的curl添加header头请求示例：
+```
+CURLOPT_HTTPHEADER =&gt; array(
+    &quot;authorization: Bearer YaD+S1fBpAJP+959VvbxJ7q1Vohamo3gah5Ay4DPvY0DC...&quot;
+    );
+```
+#### response示例
+```
+{
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;baiduOrderReferenceId&quot;: &quot;415636027324612507&quot;,
+            &quot;productId&quot;: &quot;191025095313376709&quot;,
+            &quot;botId&quot;: &quot;94e1a677-d1b3-4dd5-0f0c-b6dd0eeb1c6b&quot;,
+            &quot;sellerAmount&quot;: &quot;1&quot;,
+            &quot;payAmount&quot;: &quot;1&quot;,
+            &quot;isPaid&quot;: &quot;1&quot;,
+            &quot;payTime&quot;: &quot;2019-11-18 22:29:27&quot;,
+            &quot;status&quot;: &quot;0&quot;
+        },
+        {
+            &quot;baiduOrderReferenceId&quot;: &quot;416264498551834917&quot;,
+            &quot;productId&quot;: &quot;191025095313376709&quot;,
+            &quot;botId&quot;: &quot;94e1a677-d1b3-4dd5-0f0c-b6dd0eeb1c6b&quot;,
+            &quot;sellerAmount&quot;: &quot;1&quot;,
+            &quot;payAmount&quot;: &quot;1&quot;,
+            &quot;isPaid&quot;: &quot;1&quot;,
+            &quot;payTime&quot;: &quot;2019-11-20 16:06:41&quot;,
+            &quot;status&quot;: &quot;0&quot;
+        }
+    ]
+}
+```
+
+#### response字段说明
+| 名称 | 格式 | 含义 | 例子|
+|---|---|---|---|
+|status|int|状态码 200:成功 其它:失败|200|
+|msg|string|错误提示 当操作失败时会有相应的错误提示||
+|data.baiduOrderReferenceId|	string	|百度内部的订单id，与sellerOrderId唯一关联	|367446032047198208|
+|data.productId|string|商品入库时的productId|190305113328963320|
+|data.botId	|string	|应用ID	|94e1a677-d1b3-4dd5-0f0c-b6dd0eeb1c6b|
+|data.sellerAmount	|string	|第三方请求扣款的具体金额，币种人民币，单位分	|1900|
+|data.payAmount	|string	|用户实际支付的具体金额（有可能使用了代金券，所以payAmount &lt;= sellerAmount），币种人民币，单位分|	1900|
+|data.isPaid	|string	|用户是否已成功完成付款：1:已付款，其它为非付款成功	|1|
+|data.payTime	|string	|支付时间	|2019-11-20 16:06:41|
+|data.status	|string	|订单状态  0:未发货 1:已发货	|0|
+
+&lt;font color=red &gt;注意：发货前需要关注两个信息：isPaid 和 status ，只有当isPaid=1 and status=0才能进行发货&lt;/font&gt;
+
+
+### 发货指令onHandleIntent
+一个商品待发货：
+
+    {
+        &quot;intent&quot;: {
+            &quot;name&quot; : &quot;NotifyShipping&quot;,
+            &quot;slots&quot;:[
+                {
+                    &quot;name&quot; : &quot;baiduOrderReferenceId&quot;,
+                    &quot;value&quot;: &quot;{{STRING}}&quot;
+                }
+            ]
+        }
+    }
+
+两个商品待发货：
+
+    {
+        &quot;intent&quot;: {
+            &quot;name&quot; : &quot;NotifyShipping&quot;,
+            &quot;slots&quot;:[
+                {
+                    &quot;name&quot; : &quot;baiduOrderReferenceId&quot;,
+                    &quot;value&quot;: &quot;{{STRING}}&quot;
+                },
+                {
+                    &quot;name&quot; : &quot;baiduOrderReferenceId&quot;,
+                    &quot;value&quot;: &quot;{{STRING}}&quot;
+                }
+            ]
+        }
+    }
+指令接受参照https://github.com/dueros/AndroidBotSdkDemo 中的onHandleIntent部分
+
+合作方应用在收到发货指令后，需要根据指令中的baiduOrderReferenceId查询发货详情。
+
+### 获取发货详情
+
+&lt;font color=red &gt;注意：当登录了同一个百度账号的多台机器同时打开应用的时候（或者打开时间间隔较短的情况下），两台设备是可能同时获取到发货详情的，这还需要合作方在发货上进行控制，确保一个订单只会被一个用户消费。&lt;/font&gt;
+
+#### request
+
+GET https://dueros.baidu.com/dbp/outsideOrder/getShippingInfo?baiduOrderReferenceId=xxx&amp;timestamp=1571186526&amp;sign=yyy
+
+#### request参数
+|字段名|类型|是否必须|描述|
+|---|---|---|---|
+|baiduOrderReferenceId|string|是|度秘的订单id|
+|timestamp|int|是|请求的unix时间戳，单位秒|
+|sign|string|是|请求的签名|
+
+
+
+#### sign生成算法(下同)：
+  * 所有参数按照参数名称字母顺序排序后，以 k1=v1&amp;k2=v2&amp;k3=v3… 的方式进行拼接，生成字符串s1；
+  * 在s1后附加百度事先分配的签名密钥字符串KEY，生成字符串s2；
+  * 计算sign值：signValue = sha256(s2)；
+  * 在s1字符串后拼接sign：s1&amp;sign=signValue；
+
+#### 密钥key的获取方法
+![](https://codimd.s3.shivering-isles.com/demo/uploads/upload_d5aea480af3275a762598cdb95ccdc08.png)
+
+填入一个回调接口，保存后刷新会生成一个key；平台默认以这个key来做校验。
+
+&lt;font color=red &gt;注意：这里填入的回调接口不会被调用
+    
+如果之前已经接入了支付（那时候有沟通确认一个key）;之前的key和此次的key是不互通的。
+    
+若合作方需要此次的key与之前的key保持一致，或者有自定义key值的需求，可把key值和技能Id提供给百度同学，由百度同学帮忙更改。
+&lt;/font&gt;
+
+
+#### response
+    {
+        &quot;status&quot;: 200,
+        &quot;msg&quot;: &quot;&quot;,
+        &quot;data&quot;: {
+            &quot;baiduOrderReferenceId&quot;: &quot;xxx&quot;,
+            &quot;productId&quot;: &quot;190305113328963320&quot;,
+            &quot;isPaid&quot;: &quot;1&quot;,
+            &quot;sellerAmount&quot;: &quot;1000&quot;,
+            &quot;payAmount&quot;: &quot;1000&quot;,
+            &quot;payTime&quot;: &quot;2019-11-20 16:06:41&quot;,
+            &quot;status&quot;: &quot;0&quot;
+
+        }
+    }
+#### response字段说明
+
+| 名称 | 格式 | 含义 | 例子|
+|---|---|---|---|
+|status|int|状态码 200:成功 其它:失败|200|
+|msg|string|错误提示 当操作失败时会有相应的错误提示||
+|data.baiduOrderReferenceId|	string	|百度内部的订单id，与sellerOrderId唯一关联	|367446032047198208|
+|data.productId|string|商品入库时的productId|190305113328963320|
+|data.sellerAmount	|string	|第三方请求扣款的具体金额，币种人民币，单位分	|1900|
+|data.payAmount	|string	|用户实际支付的具体金额（有可能使用了代金券，所以payAmount &lt;= sellerAmount），币种人民币，单位分|	1900|
+|data.isPaid	|string	|用户是否已成功完成付款：1:已付款，其它为非付款成功	|1|
+|data.payTime	|string	|支付时间	|2019-11-20 16:06:41|
+|data.status	|string	|订单状态  0:未发货 1:已发货	|0|
+
+&lt;font color=red &gt;注意：发货前需要关注两个信息：isPaid 和 status ，只有当isPaid=1 and status=0才能进行发货&lt;/font&gt;
+
+### 订单发货完成
+
+合作方发货完成后需要调用云端接口完成（关闭）相应订单；若订单未关闭，下次用户打开应用时，云端会再次下发发货指令，直到订单被关闭为止。
+
+#### request
+
+POST https://dueros.baidu.com/dbp/outsideOrder/orderCompleted
+
+
+#### request参数
+|字段名|类型|是否必须|描述|
+|---|---|---|---|
+|baiduOrderReferenceId|string|是|度秘的订单id|
+|timestamp|int|是|请求的unix时间戳，单位秒|
+|sign|string|是|请求的签名|
+
+#### response示例
+
+    {
+        &quot;status&quot;: 200,
+        &quot;msg&quot;: &quot;&quot;,
+        &quot;data&quot;: []
+    }
+
+#### response字段说明
+
+
+| 名称 | 格式 | 含义 | 例子|
+|---|---|---|---|
+|status|int|状态码 200:成功 其它:失败|200|
+|msg|string|错误提示 当操作失败时会有相应的错误提示||
+
+## 调试
+
+&lt;font color=red &gt;注意：这里因为机制的原因，只有已经上过线的技能才能调试&lt;/font&gt;
+
+### 建议
+
+因为在调试过程中可能需要多次购买商品，建议创建一个一分钱的商品进行测试。
+
+### 链接
+
+GET `https://xiaodu.baidu.com/dbppay/skill-pay/product/buy?productId=xxx`
+
+
+#### 参数
+
+|字段名|类型|是否必须|描述|
+|---|---|---|---|
+|productId|string|是|商品入库得到的商品id|
+
+#### 说明
+
+建议在手机微信直接点开链接进行测试，打开链接进行购买后，在登录了当前用户的百度账号的机器上打开应有时，即可收到发货指令
+
+#### 立即发货测试
+
+若用户在小度app购买权益时，当前绑定的设备已经打开了合作方应用，则DuerOS会立即下发发货指令，而不必等下一次打开应用。
+
+&lt;font color=red &gt;注意：直接下发的发货指令 和 打开应用时下发的发货指令 是完全相同的；所以如果能处理打开应用时下发的指令，就可以处理直接下发的指令&lt;/font&gt;
+
+因为app售卖会场还没有上线，对此功能测试需要配置相应环境(人工配置付款界面的两个cookie)：
+dueros-device-id
+dueros-client-id
+
+dueros-device-id为设备底部SN码，dueros-client-id需要联系百度的员工进行获取（获取时请提供SN码）
+
+配置完成后的效果：(请注意，cookie要设置在xiaodu.baidu.com域下)
+
+
+![](https://codimd.s3.shivering-isles.com/demo/uploads/upload_c19f6f6c082407fabff64dae8a9dd040.png)
+
+配置完成后，在设备打开应用，完成支付后应用就可以收到发货指令。
+
+&lt;font color=red &gt;注意：请确保浏览器登录的百度账号与设备端登录的百度账号一致，并且购买商品时设备已经打开了待测试应用&lt;/font&gt;
+
+
+
+
+
+## 更新记录
+方案的整体机制已经确定，但机制处于开发阶段，接口请求参数上会有一些微小变动。为保证合作方高效接入，将改动点记录在如下表格，合作方接入联调时可按表格检查和更改。
+|改动时间|改动的接口|改动描述|
+|---|---|---|
+|2019-10-16-9:00|获取发货详情接口|接口path由getOrderInfo改为getShippingInfo|
+|2019-10-16-9:00|获取发货详情接口|增加时间戳参数|
+|2019-10-16-9:00|获取发货详情接口|response中的商品Id改为productId|
+|2019-10-16-9:00|订单关闭接口|增加时间戳参数|
+|2019-10-16-14:00||加入密钥key的说明|
+
+
+## FAQ
+
+Q1：商品入库获取token时失败；提示信息：获取passport信息失败； 错误码：1014
+A：若在浏览器访问，需要浏览器已登录百度账号；若在postman访问，需要配置相应cookie（可复制浏览器cookie）
+
+Q2：商品入库获取token时失败；提示信息：params invalid ；错误码：1001
+A：技能的token只能由技能的创建者获取，token获取后有效期是4个小时；故可由技能创建者获取到token后，交由入库人员在有效期内进行入库操作。
+
+Q3：通知发货的时候 我们根据哪个字段来确定给具体哪个用户发货？
+A：因为用户购买时没有涉及到你们的账号体系，所以云端也是不知道你们要发给哪个账号的；云端明确的是机器当前百度账号下买了应用的一个权益，当用户在这个机器打开对应应用时，云端下发发货指令给应用；至于应用是直接发货给当前登录用户 还是 弹出询问框询问 需要产品上定义和对齐
