@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 30
+
     defaultConfig {
         applicationId "com.baidu.duer.test_botsdk"
         minSdkVersion 19
@@ -42,7 +43,7 @@ repositories {
     }
 }
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // AndroidX
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -51,7 +52,7 @@ dependencies {
 
     // Baidu
     // implementation "com.baidu.yunapp:operationsdk-cloud:1.0.5"
-    implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.63.1'
+    implementation 'com.baidu.duer.botsdk:bot-sdk-android:1.68.1'
 
     // 3rd Party
     implementation "com.alibaba:fastjson:${FASTJSON_VERSION}"

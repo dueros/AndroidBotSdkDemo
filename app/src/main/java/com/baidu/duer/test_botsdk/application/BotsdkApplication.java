@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.baidu.duer.botsdk.BotSdk;
 import com.baidu.duer.botsdk.util.HeartBeatReporter;
+import com.baidu.duer.botsdk.util.SignatureUtils;
 import com.baidu.duer.test_botsdk.BuildConfig;
 import com.baidu.duer.test_botsdk.botsdk.BotMessageListener;
 import com.baidu.duer.test_botsdk.botsdk.BotSDKUtils;
@@ -43,7 +44,8 @@ public class BotsdkApplication extends Application {
         String random2 = BotConstants.RANDOM2_PREFIX + Math.random();
         // 在线校验示例
         BotSdk.getInstance().register(BotMessageListener.getInstance(), BotConstants.BOTID,
-                random1, BotSDKUtils.sign(random1), random2, BotSDKUtils.sign(random2));
+                random1, SignatureUtils.sign(random1, BotSDKUtils.getAppKey()),
+                random2, SignatureUtils.sign(random2, BotSDKUtils.getAppKey()));
 
         /*
          * 1.46.0版本开始，支持离线校验。依赖系统版本大于等于1.46

@@ -5,11 +5,19 @@ buildscript {
     repositories {
         google()
         jcenter()
+        // gameBox所在的百度maven库
+        maven { url 'http://maven.baidu-int.com/nexus/content/repositories/Baidu_Local'
+            allowInsecureProtocol = true
+        }
+        // gameBox Snapshots版本所在的百度maven库
+        maven { url 'http://maven.baidu-int.com/nexus/content/repositories/Baidu_Local_Snapshots'
+            allowInsecureProtocol = true
+        }
 
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath 'com.android.tools.build:gradle:7.1.0'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -23,6 +31,14 @@ allprojects {
         jcenter()
         maven{ url 'https://dueros.baidu.com/maven/repository/maven-releases/'}
         maven{ url 'https://dueros.baidu.com/maven/repository/maven-snapshots/'}
+        // gameBox所在的百度maven库
+        maven { url 'http://maven.baidu-int.com/nexus/content/repositories/Baidu_Local'
+            allowInsecureProtocol = true
+        }
+        // gameBox Snapshots版本所在的百度maven库
+        maven { url 'http://maven.baidu-int.com/nexus/content/repositories/Baidu_Local_Snapshots'
+            allowInsecureProtocol = true
+        }
         //maven{ url 'http://st01-rdqa-dev093-niuyu.epc.baidu.com:8081/artifactory/repo-bot-sdk/'}
     }
 }

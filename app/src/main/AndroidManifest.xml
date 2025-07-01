@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.baidu.duer.test_botsdk">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.baidu.duer.test_botsdk">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.baidu.baiduaccount.permission.READ_USERINFO" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <permission android:name="com.baidu.operationsdk.permission" tools:node="remove"/>
 
     <application
         android:name=".application.BotsdkApplication"

@@ -134,4 +134,9 @@ public class BotMessageListener implements IBotMessageListener {
     public void onRegisterSucceed() {
         Log.i("BotSdk", "register success");
     }
+
+    @Override
+    public void onHandleAsrResult(String s, String s1) {
+
+    }
 }
